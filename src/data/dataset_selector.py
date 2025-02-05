@@ -1,4 +1,4 @@
-from src.data.dataset import ImageNDBDataset, PatchDataset, RahmanDataset
+from src.data.dataset import CWRUDataset
 
 class DatasetSelector:
     def __init__(self, dataset_name, path, **kwargs):
@@ -8,12 +8,8 @@ class DatasetSelector:
 
     def _select_dataset(self, **kwargs):
         dataset_name = self.dataset_name.lower()
-        if dataset_name == 'image_ndb':
-            return ImageNDBDataset(path=self.path, **kwargs)
-        elif dataset_name == 'patches_ndb':
-            return PatchDataset(path=self.path, **kwargs)
-        elif dataset_name == 'rahman':
-            return RahmanDataset(path=self.path, **kwargs)
+        if dataset_name == 'cwru':
+            return CWRUDataset(path=self.path, **kwargs)
         else:
             raise ValueError(f"Dataset {dataset_name} not found")
         

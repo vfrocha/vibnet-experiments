@@ -24,14 +24,15 @@ class DatasetInterface:
     def _train_test_split(self) -> tuple[tuple[list[str], list[int], list[str], list[int]]]:
         pass
     
-    def get_k_fold_train_val_tuple(self, k) -> tuple[CustomDataset, CustomDataset]:
+    def get_k_fold_tuple(self, k) -> tuple[CustomDataset, CustomDataset, CustomDataset]:
         """
         Get K-fold train and validation dataset
         """
         train_dataset = None
+        test_dataset = None
         val_dataset = None
 
-        return train_dataset, val_dataset
+        return train_dataset, val_dataset, test_dataset
 
     def __len__(self) -> int:
         return 0

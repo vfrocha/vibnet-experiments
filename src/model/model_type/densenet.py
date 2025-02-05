@@ -30,10 +30,16 @@ class DenseNet121:
         """
         Load the DenseNet121 model from torchvision with the weights from the default or a custom path.
         """
-        if weights == 'default':
+        if str(weights) == 'default':
+            print("Selected IMAGE NET Pre Trained DenseNet121")
             model = models.densenet121(weights='IMAGENET1K_V1')
             model.classifier = nn.Linear(model.classifier.in_features, num_classes)
+        elif str(weights) == 'random':
+            print("Selected NO Pre Trained DenseNet121")
+            model = models.densenet121()
+            model.classifier = nn.Linear(model.classifier.in_features, num_classes)
         else:
+            print(f"Selected CUSTOM Pre Trained DenseNet121 {weights}")
             if not os.path.exists(weights):
                 raise FileNotFoundError(f"File {weights} not found")
             model = models.densenet121()

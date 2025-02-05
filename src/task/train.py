@@ -58,7 +58,7 @@ class TrainTask:
     def _make_save_dir(self):
         count = 1
         while True:
-            save_dir = f"{self.model_selector.model_name}_{self.optimizer_selector.optimizer_name}_{self.dataset.name}_{count}"
+            save_dir = f"{self.run_name}_{self.model_selector.model_name}_{self.optimizer_selector.optimizer_name}_{self.dataset.name}_{count}"
             save_dir_path = pl.Path(self.save_path) / pl.Path(save_dir)
             if not os.path.exists(save_dir_path):
                 os.makedirs(save_dir_path)
@@ -92,19 +92,17 @@ class TrainTask:
             self._make_save_dir()
 
         # save fold results
-        folds_paths_df = self.dataset.folds_df
-        folds_paths_df.to_csv(self.save_results_path / "folds_paths.csv", index=False)
-
-        test_dataset = self.dataset.test_dataset
-        test_loader = DataLoader(test_dataset, batch_size=self.batch_size, shuffle=False)
+        #folds_paths_df = self.dataset.folds_df
+        #folds_paths_df.to_csv(self.save_results_path / "folds_paths.csv", index=False)
 
         for fold in range(self.k_folds):
             logger.info(f"Training model for fold {fold}")
             logger.info('------------------------------------------------------------------------------')
             model = copy.deepcopy(self.model_selector.get_model())
-            train_dataset, val_dataset = self.dataset.get_k_fold_train_val_tuple(fold)
+            train_dataset, val_dataset, test_dataset = self.dataset.get_k_fold_tuple(fold)
             train_loader = DataLoader(train_dataset, batch_size=self.batch_size, shuffle=True)
             val_loader = DataLoader(val_dataset, batch_size=self.batch_size, shuffle=False)
+            test_loader = DataLoader(test_dataset, batch_size=self.batch_size, shuffle=False)
             
             optimizer_selector = copy.deepcopy(self.optimizer_selector)
             optimizer = optimizer_selector.get_optimizer(model.parameters())

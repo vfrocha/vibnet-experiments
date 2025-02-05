@@ -35,17 +35,16 @@ METADATA_PATH = pl.Path(os.path.abspath("")) / pl.Path('data') / pl.Path('ndb_uf
 @click.option("--train_size", default=0.8, help="Train size", show_default=True, type=DecimalRange(0, 1))
 @click.option("--k_folds", default=5, help="K folds", type=int, show_default=True)
 @click.option("--model_name", default="densenet121", help="Model name", type=click.Choice(["densenet121"]), show_default=True)
-@click.option("--num_classes", default=2, help="Number of classes", type=int, show_default=True)
 @click.option("--model_weights_path", default='default', help="Model weights path", type=str, show_default=True)
 @click.option("--epochs", default=200, help="Number of epochs", type=int, show_default=True)
 @click.option("--batch_size", default=32, help="Batch size", type=int, show_default=True)
-@click.option("--save_path", default="results", help="Save path", type=str, show_default=True)
+@click.option("--save_path", default="run_results", help="Save path", type=str, show_default=True)
 @click.option("--device", default="auto", help="Device", type=str, show_default=True)
 @click.option("--project_name", default="image-signal", help="Experiment Project Name", type=str, show_default=True)
 @click.option("--run_name", default="image-signal", help="Experiment Run Name", type=str, show_default=True)
 @click.option("--wandb_offline", is_flag=True, help="Wandb offline", default=False)
 def main(train, test, optimizer_name, learning_rate, scheduler_name, step_size, gamma, mode, factor, patience, min_lr, loss_name, \
-         use_weights_loss, dataset_name, dataset_path, train_size, k_folds, model_name, num_classes, model_weights_path, epochs,  \
+         use_weights_loss, dataset_name, dataset_path, train_size, k_folds, model_name, model_weights_path, epochs,  \
          batch_size, save_path, device, project_name, run_name, wandb_offline):    
     if device == "auto":
         device = "cuda" if torch.cuda.is_available() else "cpu"

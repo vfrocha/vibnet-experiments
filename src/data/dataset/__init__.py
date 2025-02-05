@@ -1,1 +1,1 @@
-from src.data.dataset.cwru import ImageNDBDataset
+from src.data.dataset.cwru import CWRUDataset
