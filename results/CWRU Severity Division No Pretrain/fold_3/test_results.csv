@@ -1,0 +1,2 @@
+test_loss,recall_score,precision_score,f1_score,accuracy_score
+1.4751318850234383,0.74375,0.6234567901234568,0.5516225722057626,0.6625

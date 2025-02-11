@@ -3,6 +3,7 @@ from src.data.dataset.dataset_interface import DatasetInterface
 
 from src.data.dataset.augmentation import get_train_augmentation,get_test_augmentation
 import numpy as np
+import os
 
 class CWRUDataset(DatasetInterface):
     name = "cwru"
@@ -24,13 +25,16 @@ class CWRUDataset(DatasetInterface):
     def _get_fold_files(self,k):
 
         classes = [0,1,2,3]
-
         classesReturn = []
         for c in classes:
             images = list(self.path.glob(f"fold{k}/{c}/*.png"))
             if len(images) == 0:
-                raise(ValueError("Invalid folder"))
-            classesReturn.append(images)
+                #print(f"Warning: No images found for class {c} in fold {k}. Skipping.")
+                continue  # Skip this class and move to the next one
+            classesReturn.append((c,images))
+
+        if len(classesReturn) == 0:
+            raise(ValueError("Invalid Folders Probably"))
 
         return classesReturn
 
@@ -51,24 +55,24 @@ class CWRUDataset(DatasetInterface):
             if i != k:
                 labelX_imgs = self._get_fold_files(i)
                 
-                for idx,label in enumerate(labelX_imgs):
-                    train_imgs += label
-                    train_labels += list(np.full(len(label),idx))
+                for class_number,image_paths in labelX_imgs:
+                    train_imgs += image_paths
+                    train_labels += list(np.full(len(image_paths),class_number))
 
             if i == (k+1) % 4:
                 labelX_imgs = self._get_fold_files(i)
                 
-                for idx,label in enumerate(labelX_imgs):
-                    val_imgs += label
-                    val_labels += list(np.full(len(label),idx))
+                for class_number,image_paths in labelX_imgs:
+                    val_imgs += image_paths
+                    val_labels += list(np.full(len(image_paths),class_number))
             
             if i == k:
 
                 labelX_imgs = self._get_fold_files(i)
                 
-                for idx,label in enumerate(labelX_imgs):
-                    test_imgs += label
-                    test_labels += list(np.full(len(label),idx))
+                for class_number,image_paths in labelX_imgs:
+                    test_imgs += image_paths
+                    test_labels += list(np.full(len(image_paths),class_number))
 
 
         train_dataset = CustomDataset(train_imgs, train_labels, transform=self.train_transform)

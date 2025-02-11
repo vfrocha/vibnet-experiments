@@ -43,9 +43,10 @@ METADATA_PATH = pl.Path(os.path.abspath("")) / pl.Path('data') / pl.Path('ndb_uf
 @click.option("--project_name", default="image-signal", help="Experiment Project Name", type=str, show_default=True)
 @click.option("--run_name", default="image-signal", help="Experiment Run Name", type=str, show_default=True)
 @click.option("--wandb_offline", is_flag=True, help="Wandb offline", default=False)
+@click.option("--partial_fine_tunning", is_flag=True, help="Partial Fine Tunning", default=False)
 def main(train, test, optimizer_name, learning_rate, scheduler_name, step_size, gamma, mode, factor, patience, min_lr, loss_name, \
          use_weights_loss, dataset_name, dataset_path, train_size, k_folds, model_name, model_weights_path, epochs,  \
-         batch_size, save_path, device, project_name, run_name, wandb_offline):    
+         batch_size, save_path, device, project_name, run_name, wandb_offline,partial_fine_tunning):    
     if device == "auto":
         device = "cuda" if torch.cuda.is_available() else "cpu"
     else:
@@ -65,7 +66,7 @@ def main(train, test, optimizer_name, learning_rate, scheduler_name, step_size, 
     num_classes = len(dataset.labels_names)
 
     # initialize model
-    model_selector = ModelSelector(model_name, model_weights_path, num_classes=num_classes, device=device)
+    model_selector = ModelSelector(model_name, model_weights_path, num_classes=num_classes, device=device, freeze_conv=partial_fine_tunning)
 
     if train:
         logger.info(f"Training model {model_name} with dataset {dataset_name}")

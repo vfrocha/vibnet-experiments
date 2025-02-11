@@ -1,0 +1,2 @@
+./cwru_severity_division_from_image_net.sh
+./cwru_severity_division_from_zero.sh

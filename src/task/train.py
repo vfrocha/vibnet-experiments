@@ -6,10 +6,11 @@ import pandas as pd
 import numpy as np
 import torch
 from torch.utils.data import DataLoader
+from datetime import datetime
 
 import wandb
 
-from sklearn.metrics import recall_score, precision_score, f1_score, accuracy_score
+from sklearn.metrics import recall_score, precision_score, f1_score, accuracy_score,balanced_accuracy_score
 from sklearn.utils.class_weight import compute_class_weight
 
 from src.pipeline import train, test
@@ -33,7 +34,7 @@ class TrainTask:
         self.project_name = project_name
         self.save_results_path = None
         self.run_name = run_name
-
+        self.run_date = datetime.now().strftime("%d_%m_%Y_%H%M")
         self._init_wandb()
 
     def _init_wandb(self):
@@ -58,7 +59,13 @@ class TrainTask:
     def _make_save_dir(self):
         count = 1
         while True:
-            save_dir = f"{self.run_name}_{self.model_selector.model_name}_{self.optimizer_selector.optimizer_name}_{self.dataset.name}_{count}"
+            save_dir = (
+            f"{self.run_name}_"
+            f"{self.model_selector.model_name}_"
+            f"{self.optimizer_selector.optimizer_name}_"
+            f"{self.dataset.name}_"
+            f"{self.run_date}"
+        )
             save_dir_path = pl.Path(self.save_path) / pl.Path(save_dir)
             if not os.path.exists(save_dir_path):
                 os.makedirs(save_dir_path)
@@ -81,7 +88,13 @@ class TrainTask:
             logger.info(f"Created root directory to save all results {self.save_path}")
 
         # make saving dir with format model_name_optimizer_name_dataset_day_month_year
-        save_dir = f"{self.model_selector.model_name}_{self.optimizer_selector.optimizer_name}_{self.dataset.name}"
+        save_dir = (
+            f"{self.run_name}_"
+            f"{self.model_selector.model_name}_"
+            f"{self.optimizer_selector.optimizer_name}_"
+            f"{self.dataset.name}_"
+            f"{self.run_date}"
+        )
         save_dir_path = pl.Path(self.save_path) / pl.Path(save_dir)
         if not os.path.exists(save_dir_path):
             os.makedirs(save_dir_path)
@@ -140,8 +153,8 @@ class TrainTask:
 
             recall_score_val = recall_score(y_true, y_pred, average='weighted')
             precision_score_val = precision_score(y_true, y_pred, average='weighted')
-            f1_score_val = f1_score(y_true, y_pred, average='weighted')
-            accuracy_score_val = accuracy_score(y_true, y_pred)
+            f1_score_val = f1_score(y_true, y_pred, average='macro')
+            accuracy_score_val = balanced_accuracy_score(y_true, y_pred)
 
             logger.info(f"Test loss: {test_loss} for fold {fold}")
             logger.info(f"Recall score: {recall_score_val*100:0.4f}% for fold {fold}")

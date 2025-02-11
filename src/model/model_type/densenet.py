@@ -11,10 +11,15 @@ class DenseNet121:
     """
     DenseNet121 model from torchvision, with the classifier layer changed to the number of classes in the dataset and the weights loaded from the default weights or a custom path.
     """
-    def __init__(self, num_classes=2, weights='default', device='auto') -> None:
+    def __init__(self, num_classes=2, weights='default', device='auto',freeze_conv=False) -> None:
         self.model = self._load_model(weights, num_classes)
         self.features = self.model.features
         self.classifier = self.model.classifier
+
+        if freeze_conv:
+            if str(weights) == 'random':
+                raise ValueError("Freezing random weights")
+            self._freeze_conv_layers()
 
         if device == 'auto':
             self.device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
@@ -54,6 +59,11 @@ class DenseNet121:
             #model.classifier = nn.Linear(model.classifier.in_features, num_classes)
 
         return model
+
+    def _freeze_conv_layers(self):
+        print("Freezing Conv Layers")
+        for param in self.model.features.parameters():
+            param.requires_grad = False
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
         return self.model(x)
