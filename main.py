@@ -30,7 +30,7 @@ METADATA_PATH = pl.Path(os.path.abspath("")) / pl.Path('data') / pl.Path('ndb_uf
 @click.option("--min_lr", default=10e-6, help="Min lr for ReduceLROnPlateau scheduler", type=float, show_default=True)
 @click.option("--loss_name", default="cross_entropy", help="Loss name", type=click.Choice(["cross_entropy"]), show_default=True)
 @click.option("--use_weights_loss",is_flag=True, help="Use weights for loss", default=False, show_default=True)
-@click.option("--dataset_name", default="cwru", help="Dataset name", type=click.Choice(["cwru"]), show_default=True) # MUST CHANGE
+@click.option("--dataset_name", default="cwru", help="Dataset name", type=click.Choice(["cwru","vibnet"]), show_default=True) # MUST CHANGE
 @click.option("--dataset_path", default=PATCH_PATH, help="Dataset path", type=str, show_default=True)
 @click.option("--train_size", default=0.8, help="Train size", show_default=True, type=DecimalRange(0, 1))
 @click.option("--k_folds", default=5, help="K folds", type=int, show_default=True)

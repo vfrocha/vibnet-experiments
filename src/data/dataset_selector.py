@@ -1,4 +1,4 @@
-from src.data.dataset import CWRUDataset
+from src.data.dataset import CWRUDataset, VibnetDataset
 
 class DatasetSelector:
     def __init__(self, dataset_name, path, **kwargs):
@@ -10,6 +10,8 @@ class DatasetSelector:
         dataset_name = self.dataset_name.lower()
         if dataset_name == 'cwru':
             return CWRUDataset(path=self.path, **kwargs)
+        elif dataset_name == 'vibnet':
+            return VibnetDataset(path=self.path, **kwargs)
         else:
             raise ValueError(f"Dataset {dataset_name} not found")
         
