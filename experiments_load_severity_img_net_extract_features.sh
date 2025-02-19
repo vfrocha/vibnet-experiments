@@ -1,2 +1,0 @@
-./cwru_load_division_extract_features_image_net.sh
-./cwru_severity_division_extract_features_image_net.sh
