@@ -1,0 +1,160 @@
+/home/vfrocha/.local/lib/python3.10/site-packages/torchvision/transforms/v2/_deprecated.py:42: UserWarning: The transform `ToTensor()` is deprecated and will be removed in a future release. Instead, please use `v2.Compose([v2.ToImage(), v2.ToDtype(torch.float32, scale=True)])`.Output is equivalent up to float precision.
+  warnings.warn(
+Selected NO Pre Trained DenseNet121
+2025-09-12 16:05:02 andromeda root[76858] INFO Training model densenet121 with dataset vibnet
+wandb: Currently logged in as: victorfreitasr (victorfreitasr-ufes) to https://api.wandb.ai. Use `wandb login --relogin` to force relogin
+wandb: Tracking run with wandb version 0.21.1
+wandb: Run data is saved locally in /home/vfrocha/newvibnetexperiments/wandb/run-20250912_160502-6mevpb52
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run CWRU HUST PU TRAIN WITH NORMALIZED LABELS
+wandb: ⭐️ View project at https://wandb.ai/victorfreitasr-ufes/image-signal
+wandb: 🚀 View run at https://wandb.ai/victorfreitasr-ufes/image-signal/runs/6mevpb52
+2025-09-12 16:05:03 andromeda root[76858] INFO Created directory to run_results/train/CWRU HUST PU TRAIN WITH NORMALIZED LABELS_densenet121_adam_vibnet_12_09_2025_1605
+2025-09-12 16:05:03 andromeda root[76858] INFO Training model for fold 0
+2025-09-12 16:05:03 andromeda root[76858] INFO ------------------------------------------------------------------------------
+2025-09-12 16:05:03 andromeda root[76858] INFO | Epoch | Train Loss | Train Acc | Validation Loss | Validation Acc |  Time  |
+2025-09-12 16:29:01 andromeda root[76858] INFO |  001  |   0.32679  |    87%    |     0.18718     |       94%      | 1437.52s |
+2025-09-12 16:51:11 andromeda root[76858] INFO |  002  |   0.08977  |    97%    |     0.19218     |       93%      | 1329.57s |
+2025-09-12 17:12:25 andromeda root[76858] INFO |  003  |   0.05707  |    98%    |     0.03187     |       99%      | 1273.79s |
+2025-09-12 17:33:54 andromeda root[76858] INFO |  004  |   0.04276  |    98%    |     0.03577     |       99%      | 1288.82s |
+2025-09-12 17:56:15 andromeda root[76858] INFO |  005  |   0.02821  |    99%    |     0.06449     |       98%      | 1340.82s |
+2025-09-12 18:17:52 andromeda root[76858] INFO |  006  |   0.02763  |    99%    |     0.02755     |       99%      | 1296.06s |
+2025-09-12 18:39:16 andromeda root[76858] INFO |  007  |   0.02545  |    99%    |     0.05240     |       98%      | 1283.74s |
+2025-09-12 18:59:57 andromeda root[76858] INFO |  008  |   0.02308  |    99%    |     0.02174     |       99%      | 1240.58s |
+2025-09-12 19:16:55 andromeda root[76858] INFO |  009  |   0.01658  |    99%    |     0.01645     |       99%      | 1017.24s |
+2025-09-12 19:34:08 andromeda root[76858] INFO |  010  |   0.02167  |    99%    |     0.01473     |       100%      | 1032.83s |
+2025-09-12 19:34:12 andromeda root[76858] INFO ------------------------------------------------------------------------------
+2025-09-12 19:37:10 andromeda root[76858] INFO Test loss: 0.011144429880489382 for fold 0
+2025-09-12 19:37:10 andromeda root[76858] INFO Recall score: 99.7289% for fold 0
+2025-09-12 19:37:10 andromeda root[76858] INFO Precision score: 99.7343% for fold 0
+2025-09-12 19:37:10 andromeda root[76858] INFO F1 score: 99.4063% for fold 0
+2025-09-12 19:37:10 andromeda root[76858] INFO Accuracy score: 99.7953% for fold 0
+2025-09-12 19:37:10 andromeda root[76858] INFO Saved test results to run_results/train/CWRU HUST PU TRAIN WITH NORMALIZED LABELS_densenet121_adam_vibnet_12_09_2025_1605/fold_0/test_results.csv
+2025-09-12 19:37:10 andromeda root[76858] INFO Saved predictions to run_results/train/CWRU HUST PU TRAIN WITH NORMALIZED LABELS_densenet121_adam_vibnet_12_09_2025_1605/fold_0/preds_true.csv
+2025-09-12 19:37:10 andromeda root[76858] INFO Training model for fold 1
+2025-09-12 19:37:10 andromeda root[76858] INFO ------------------------------------------------------------------------------
+2025-09-12 19:37:11 andromeda root[76858] INFO | Epoch | Train Loss | Train Acc | Validation Loss | Validation Acc |  Time  |
+2025-09-12 19:58:45 andromeda root[76858] INFO |  001  |   0.32993  |    86%    |     0.13392     |       95%      | 1293.26s |
+2025-09-12 20:14:27 andromeda root[76858] INFO |  002  |   0.09242  |    96%    |     0.08472     |       97%      | 942.44s |
+2025-09-12 20:30:55 andromeda root[76858] INFO |  003  |   0.05350  |    98%    |     0.06319     |       97%      | 987.20s |
+2025-09-12 20:47:07 andromeda root[76858] INFO |  004  |   0.04075  |    99%    |     0.04024     |       99%      | 971.25s |
+2025-09-12 21:02:22 andromeda root[76858] INFO |  005  |   0.02811  |    99%    |     0.03662     |       99%      | 915.19s |
+2025-09-12 21:18:07 andromeda root[76858] INFO |  006  |   0.02581  |    99%    |     0.01309     |       100%      | 944.16s |
+2025-09-12 21:33:33 andromeda root[76858] INFO |  007  |   0.02125  |    99%    |     0.01607     |       99%      | 925.57s |
+W0912 21:37:33.941000 76837 torch/distributed/elastic/agent/server/api.py:723] Received Signals.SIGHUP death signal, shutting down workers
+W0912 21:37:36.735000 76837 torch/distributed/elastic/multiprocessing/api.py:900] Sending process 76858 closing signal SIGHUP
+Traceback (most recent call last):
+  File "/home/vfrocha/.local/bin/torchrun", line 8, in <module>
+    sys.exit(main())
+  File "/home/vfrocha/.local/lib/python3.10/site-packages/torch/distributed/elastic/multiprocessing/errors/__init__.py", line 357, in wrapper
+    return f(*args, **kwargs)
+  File "/home/vfrocha/.local/lib/python3.10/site-packages/torch/distributed/run.py", line 901, in main
+    run(args)
+  File "/home/vfrocha/.local/lib/python3.10/site-packages/torch/distributed/run.py", line 892, in run
+    elastic_launch(
+  File "/home/vfrocha/.local/lib/python3.10/site-packages/torch/distributed/launcher/api.py", line 143, in __call__
+    return launch_agent(self._config, self._entrypoint, list(args))
+  File "/home/vfrocha/.local/lib/python3.10/site-packages/torch/distributed/launcher/api.py", line 268, in launch_agent
+    result = agent.run()
+  File "/home/vfrocha/.local/lib/python3.10/site-packages/torch/distributed/elastic/metrics/api.py", line 138, in wrapper
+    result = f(*args, **kwargs)
+  File "/home/vfrocha/.local/lib/python3.10/site-packages/torch/distributed/elastic/agent/server/api.py", line 715, in run
+    result = self._invoke_run(role)
+  File "/home/vfrocha/.local/lib/python3.10/site-packages/torch/distributed/elastic/agent/server/api.py", line 879, in _invoke_run
+    time.sleep(monitor_interval)
+  File "/home/vfrocha/.local/lib/python3.10/site-packages/torch/distributed/elastic/multiprocessing/api.py", line 84, in _terminate_process_handler
+    raise SignalException(f"Process {os.getpid()} got signal: {sigval}", sigval=sigval)
+torch.distributed.elastic.multiprocessing.api.SignalException: Process 76837 got signal: 1
+/home/vfrocha/.local/lib/python3.10/site-packages/torchvision/transforms/v2/_deprecated.py:42: UserWarning: The transform `ToTensor()` is deprecated and will be removed in a future release. Instead, please use `v2.Compose([v2.ToImage(), v2.ToDtype(torch.float32, scale=True)])`.Output is equivalent up to float precision.
+  warnings.warn(
+Selected NO Pre Trained DenseNet121
+2025-09-13 05:02:23 andromeda root[80054] INFO Training model densenet121 with dataset vibnet
+wandb: Currently logged in as: victorfreitasr (victorfreitasr-ufes) to https://api.wandb.ai. Use `wandb login --relogin` to force relogin
+wandb: Tracking run with wandb version 0.21.1
+wandb: Run data is saved locally in /home/vfrocha/newvibnetexperiments/wandb/run-20250913_050223-1atuxw72
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run CWRU HUST PU TRAIN WITH NORMALIZED LABELS
+wandb: ⭐️ View project at https://wandb.ai/victorfreitasr-ufes/image-signal
+wandb: 🚀 View run at https://wandb.ai/victorfreitasr-ufes/image-signal/runs/1atuxw72
+2025-09-13 05:02:29 andromeda root[80054] INFO Created directory to run_results/train/CWRU HUST PU TRAIN WITH NORMALIZED LABELS_densenet121_adam_vibnet_13_09_2025_0502
+2025-09-13 05:02:29 andromeda root[80054] INFO Training model for fold 0
+2025-09-13 05:02:29 andromeda root[80054] INFO ------------------------------------------------------------------------------
+2025-09-13 05:02:29 andromeda root[80054] INFO | Epoch | Train Loss | Train Acc | Validation Loss | Validation Acc |  Time  |
+2025-09-13 05:22:15 andromeda root[80054] INFO |  001  |   0.32131  |    87%    |     0.15328     |       94%      | 1185.95s |
+2025-09-13 05:41:14 andromeda root[80054] INFO |  002  |   0.08779  |    97%    |     0.10257     |       96%      | 1139.48s |
+2025-09-13 05:59:56 andromeda root[80054] INFO |  003  |   0.05388  |    98%    |     0.05919     |       98%      | 1120.67s |
+2025-09-13 06:17:48 andromeda root[80054] INFO |  004  |   0.03429  |    99%    |     0.06676     |       98%      | 1071.38s |
+2025-09-13 06:36:56 andromeda root[80054] INFO |  005  |   0.03364  |    99%    |     0.05384     |       98%      | 1147.99s |
+2025-09-13 06:55:23 andromeda root[80054] INFO |  006  |   0.02617  |    99%    |     0.07250     |       98%      | 1106.35s |
+2025-09-13 07:13:12 andromeda root[80054] INFO |  007  |   0.02513  |    99%    |     0.03202     |       99%      | 1068.88s |
+2025-09-13 07:31:36 andromeda root[80054] INFO |  008  |   0.02424  |    99%    |     0.01540     |       99%      | 1103.41s |
+2025-09-13 07:50:02 andromeda root[80054] INFO |  009  |   0.01727  |    99%    |     0.01425     |       100%      | 1105.59s |
+2025-09-13 08:06:57 andromeda root[80054] INFO |  010  |   0.01695  |    99%    |     0.05121     |       98%      | 1014.20s |
+2025-09-13 08:07:01 andromeda root[80054] INFO ------------------------------------------------------------------------------
+W0913 08:07:34.037000 80027 torch/distributed/elastic/agent/server/api.py:723] Received Signals.SIGHUP death signal, shutting down workers
+W0913 08:07:35.845000 80027 torch/distributed/elastic/multiprocessing/api.py:900] Sending process 80054 closing signal SIGHUP
+Traceback (most recent call last):
+  File "/home/vfrocha/.local/bin/torchrun", line 8, in <module>
+    sys.exit(main())
+  File "/home/vfrocha/.local/lib/python3.10/site-packages/torch/distributed/elastic/multiprocessing/errors/__init__.py", line 357, in wrapper
+    return f(*args, **kwargs)
+  File "/home/vfrocha/.local/lib/python3.10/site-packages/torch/distributed/run.py", line 901, in main
+    run(args)
+  File "/home/vfrocha/.local/lib/python3.10/site-packages/torch/distributed/run.py", line 892, in run
+    elastic_launch(
+  File "/home/vfrocha/.local/lib/python3.10/site-packages/torch/distributed/launcher/api.py", line 143, in __call__
+    return launch_agent(self._config, self._entrypoint, list(args))
+  File "/home/vfrocha/.local/lib/python3.10/site-packages/torch/distributed/launcher/api.py", line 268, in launch_agent
+    result = agent.run()
+  File "/home/vfrocha/.local/lib/python3.10/site-packages/torch/distributed/elastic/metrics/api.py", line 138, in wrapper
+    result = f(*args, **kwargs)
+  File "/home/vfrocha/.local/lib/python3.10/site-packages/torch/distributed/elastic/agent/server/api.py", line 715, in run
+    result = self._invoke_run(role)
+  File "/home/vfrocha/.local/lib/python3.10/site-packages/torch/distributed/elastic/agent/server/api.py", line 879, in _invoke_run
+    time.sleep(monitor_interval)
+  File "/home/vfrocha/.local/lib/python3.10/site-packages/torch/distributed/elastic/multiprocessing/api.py", line 84, in _terminate_process_handler
+    raise SignalException(f"Process {os.getpid()} got signal: {sigval}", sigval=sigval)
+torch.distributed.elastic.multiprocessing.api.SignalException: Process 80027 got signal: 1
+/home/vfrocha/.local/lib/python3.10/site-packages/torchvision/transforms/v2/_deprecated.py:42: UserWarning: The transform `ToTensor()` is deprecated and will be removed in a future release. Instead, please use `v2.Compose([v2.ToImage(), v2.ToDtype(torch.float32, scale=True)])`.Output is equivalent up to float precision.
+  warnings.warn(
+Selected NO Pre Trained DenseNet121
+2025-09-13 12:25:05 andromeda root[81805] INFO Training model densenet121 with dataset vibnet
+wandb: Currently logged in as: victorfreitasr (victorfreitasr-ufes) to https://api.wandb.ai. Use `wandb login --relogin` to force relogin
+wandb: Tracking run with wandb version 0.21.1
+wandb: Run data is saved locally in /home/vfrocha/newvibnetexperiments/wandb/run-20250913_122506-ftmqxt18
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run CWRU HUST PU TRAIN WITH NORMALIZED LABELS
+wandb: ⭐️ View project at https://wandb.ai/victorfreitasr-ufes/image-signal
+wandb: 🚀 View run at https://wandb.ai/victorfreitasr-ufes/image-signal/runs/ftmqxt18
+2025-09-13 12:25:11 andromeda root[81805] INFO Created directory to run_results/train/CWRU HUST PU TRAIN WITH NORMALIZED LABELS_densenet121_adam_vibnet_13_09_2025_1225
+2025-09-13 12:25:11 andromeda root[81805] INFO Training model for fold 0
+2025-09-13 12:25:11 andromeda root[81805] INFO ------------------------------------------------------------------------------
+2025-09-13 12:25:11 andromeda root[81805] INFO | Epoch | Train Loss | Train Acc | Validation Loss | Validation Acc |  Time  |
+2025-09-13 12:45:02 andromeda root[81805] INFO |  001  |   0.33754  |    86%    |     0.60097     |       80%      | 1191.04s |
+2025-09-13 13:04:19 andromeda root[81805] INFO |  002  |   0.09524  |    97%    |     0.05501     |       98%      | 1157.15s |
+2025-09-13 13:23:53 andromeda root[81805] INFO |  003  |   0.05921  |    98%    |     0.10969     |       96%      | 1173.25s |
+2025-09-13 13:42:51 andromeda root[81805] INFO |  004  |   0.04190  |    99%    |     0.01968     |       100%      | 1136.40s |
+W0913 13:47:14.481000 81765 torch/distributed/elastic/agent/server/api.py:723] Received Signals.SIGHUP death signal, shutting down workers
+W0913 13:47:14.522000 81765 torch/distributed/elastic/multiprocessing/api.py:900] Sending process 81805 closing signal SIGHUP
+Traceback (most recent call last):
+  File "/home/vfrocha/.local/bin/torchrun", line 8, in <module>
+    sys.exit(main())
+  File "/home/vfrocha/.local/lib/python3.10/site-packages/torch/distributed/elastic/multiprocessing/errors/__init__.py", line 357, in wrapper
+    return f(*args, **kwargs)
+  File "/home/vfrocha/.local/lib/python3.10/site-packages/torch/distributed/run.py", line 901, in main
+    run(args)
+  File "/home/vfrocha/.local/lib/python3.10/site-packages/torch/distributed/run.py", line 892, in run
+    elastic_launch(
+  File "/home/vfrocha/.local/lib/python3.10/site-packages/torch/distributed/launcher/api.py", line 143, in __call__
+    return launch_agent(self._config, self._entrypoint, list(args))
+  File "/home/vfrocha/.local/lib/python3.10/site-packages/torch/distributed/launcher/api.py", line 268, in launch_agent
+    result = agent.run()
+  File "/home/vfrocha/.local/lib/python3.10/site-packages/torch/distributed/elastic/metrics/api.py", line 138, in wrapper
+    result = f(*args, **kwargs)
+  File "/home/vfrocha/.local/lib/python3.10/site-packages/torch/distributed/elastic/agent/server/api.py", line 715, in run
+    result = self._invoke_run(role)
+  File "/home/vfrocha/.local/lib/python3.10/site-packages/torch/distributed/elastic/agent/server/api.py", line 879, in _invoke_run
+    time.sleep(monitor_interval)
+  File "/home/vfrocha/.local/lib/python3.10/site-packages/torch/distributed/elastic/multiprocessing/api.py", line 84, in _terminate_process_handler
+    raise SignalException(f"Process {os.getpid()} got signal: {sigval}", sigval=sigval)
+torch.distributed.elastic.multiprocessing.api.SignalException: Process 81765 got signal: 1

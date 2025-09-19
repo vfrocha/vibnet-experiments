@@ -10,9 +10,9 @@ torchrun main.py \
   --min_lr=0.000001 \
   --loss_name=cross_entropy \
   --dataset_name=vibnet \
-  --dataset_path="data/vibnet_images_labels_normalized/img" \
+  --dataset_path="data/combined_datasets/CWRU_HUST_UORED_images_labels_normalized/img" \
   --model_name=densenet121 \
   --epochs=10 \
   --batch_size=32 \
-  --run_name="VIBNET TRAIN WITH NORMALIZED LABELS" \
+  --run_name="CWRU HUST UORED TRAIN WITH NORMALIZED LABELS" \
   --model_weights_path="random"
