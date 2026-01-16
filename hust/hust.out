@@ -1,0 +1,65 @@
+========================================
+ETAPA 1: Pré-Treinamento VibNet (Source Domain)
+========================================
+[CWRU_12k] Carregado: 10088 imagens, 4 classes.
+[CWRU_48k] Carregado: 2422 imagens, 3 classes.
+[PU] Carregado: 26028 imagens, 3 classes.
+[UORED] Carregado: 7200 imagens, 6 classes.
+Total Source Data: 45738 imagens, 16 classes globais.
+Treinando Source Model...
+Source Ep 1: 100%|██████████████████████████| 1287/1287 [19:10<00:00,  1.12it/s]
+Source Ep 2: 100%|██████████████████████████| 1287/1287 [10:38<00:00,  2.02it/s]
+Source Ep 3: 100%|██████████████████████████| 1287/1287 [09:31<00:00,  2.25it/s]
+Source Ep 4: 100%|██████████████████████████| 1287/1287 [08:22<00:00,  2.56it/s]
+Source Ep 5: 100%|██████████████████████████| 1287/1287 [05:21<00:00,  4.00it/s]
+Salvando backbone da VibNet...
+
+========================================
+ETAPA 2: Experimentos no HUST (Target Domain)
+========================================
+
+>>> FOLD: Testando em Load_0W (Treino em ['Load_200W', 'Load_400W'])
+   -> Estratégia: Scratch
+      Result: Bal Acc 0.9509 | F1 0.9515
+   -> Estratégia: ImageNet
+      Result: Bal Acc 0.9289 | F1 0.9322
+   -> Estratégia: VibNet
+      Result: Bal Acc 0.9200 | F1 0.9217
+
+>>> FOLD: Testando em Load_200W (Treino em ['Load_0W', 'Load_400W'])
+   -> Estratégia: Scratch
+      Result: Bal Acc 0.9819 | F1 0.9816
+   -> Estratégia: ImageNet
+      Result: Bal Acc 0.9926 | F1 0.9923
+   -> Estratégia: VibNet
+      Result: Bal Acc 0.9984 | F1 0.9983
+
+>>> FOLD: Testando em Load_400W (Treino em ['Load_0W', 'Load_200W'])
+   -> Estratégia: Scratch
+      Result: Bal Acc 0.9439 | F1 0.9396
+   -> Estratégia: ImageNet
+      Result: Bal Acc 0.9721 | F1 0.9709
+   -> Estratégia: VibNet
+      Result: Bal Acc 0.9593 | F1 0.9545
+
+
+=== RESULTADOS CONSOLIDADOS ===
+  Test Condition  Strategy  Bal Accuracy  Macro F1
+0        Load_0W   Scratch      0.950873  0.951514
+1        Load_0W  ImageNet      0.928867  0.932248
+2        Load_0W    VibNet      0.919998  0.921706
+3      Load_200W   Scratch      0.981865  0.981568
+4      Load_200W  ImageNet      0.992595  0.992331
+5      Load_200W    VibNet      0.998440  0.998266
+6      Load_400W   Scratch      0.943929  0.939566
+7      Load_400W  ImageNet      0.972078  0.970891
+8      Load_400W    VibNet      0.959328  0.954534
+
+=== MÉDIA POR ESTRATÉGIA ===
+         Bal Accuracy            Macro F1
+                 mean       std      mean       std
+Strategy
+ImageNet     0.964513  0.032531  0.965157  0.030449
+Scratch      0.958889  0.020199  0.957549  0.021641
+VibNet       0.959255  0.039221  0.958168  0.038409
+
