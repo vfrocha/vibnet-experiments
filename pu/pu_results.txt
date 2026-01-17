@@ -1,0 +1,70 @@
+Pesos VibNet encontrados (vibnet_source_weights_pu_exp.pth), pulando Etapa 1.
+
+========================================
+ETAPA 2: Experimentos no PU (Target Domain)
+========================================
+Condições Detectadas (4): ['C1_1500rpm_0.7Nm_1000N', 'C2_900rpm_0.7Nm_1000N', 'C3_1500rpm_0.1Nm_1000N', 'C4_1500rpm_0.7Nm_400N']
+Classes Detectadas (3): {'Class_26': 0, 'Class_27': 1, 'Class_29': 2}
+
+>>> FOLD: Testando em 'C1_1500rpm_0.7Nm_1000N'
+    Treino em: ['C2_900rpm_0.7Nm_1000N', 'C3_1500rpm_0.1Nm_1000N', 'C4_1500rpm_0.7Nm_400N']
+   -> Estratégia: Scratch
+      Resultado: Bal Acc 0.9998 | Macro F1 0.9999
+   -> Estratégia: ImageNet
+      Resultado: Bal Acc 1.0000 | Macro F1 1.0000
+   -> Estratégia: VibNet
+      Resultado: Bal Acc 1.0000 | Macro F1 1.0000
+
+>>> FOLD: Testando em 'C2_900rpm_0.7Nm_1000N'
+    Treino em: ['C1_1500rpm_0.7Nm_1000N', 'C3_1500rpm_0.1Nm_1000N', 'C4_1500rpm_0.7Nm_400N']
+   -> Estratégia: Scratch
+      Resultado: Bal Acc 0.7396 | Macro F1 0.5739
+   -> Estratégia: ImageNet
+      Resultado: Bal Acc 0.6942 | Macro F1 0.5158
+   -> Estratégia: VibNet
+      Resultado: Bal Acc 0.7166 | Macro F1 0.5881
+
+>>> FOLD: Testando em 'C3_1500rpm_0.1Nm_1000N'
+    Treino em: ['C1_1500rpm_0.7Nm_1000N', 'C2_900rpm_0.7Nm_1000N', 'C4_1500rpm_0.7Nm_400N']
+   -> Estratégia: Scratch
+      Resultado: Bal Acc 0.9987 | Macro F1 0.9992
+   -> Estratégia: ImageNet
+      Resultado: Bal Acc 0.9995 | Macro F1 0.9996
+   -> Estratégia: VibNet
+      Resultado: Bal Acc 1.0000 | Macro F1 1.0000
+
+>>> FOLD: Testando em 'C4_1500rpm_0.7Nm_400N'
+    Treino em: ['C1_1500rpm_0.7Nm_1000N', 'C2_900rpm_0.7Nm_1000N', 'C3_1500rpm_0.1Nm_1000N']
+   -> Estratégia: Scratch
+      Resultado: Bal Acc 0.8466 | Macro F1 0.7392
+   -> Estratégia: ImageNet
+      Resultado: Bal Acc 0.8705 | Macro F1 0.7523
+   -> Estratégia: VibNet
+      Resultado: Bal Acc 0.8339 | Macro F1 0.7640
+
+========================================
+RESUMO DOS EXPERIMENTOS (PU)
+========================================
+            Fold Condition  Strategy  Bal Accuracy  Macro F1
+0   C1_1500rpm_0.7Nm_1000N   Scratch      0.999826  0.999870
+1   C1_1500rpm_0.7Nm_1000N  ImageNet      1.000000  1.000000
+2   C1_1500rpm_0.7Nm_1000N    VibNet      1.000000  1.000000
+3    C2_900rpm_0.7Nm_1000N   Scratch      0.739594  0.573877
+4    C2_900rpm_0.7Nm_1000N  ImageNet      0.694236  0.515815
+5    C2_900rpm_0.7Nm_1000N    VibNet      0.716603  0.588117
+6   C3_1500rpm_0.1Nm_1000N   Scratch      0.998698  0.999217
+7   C3_1500rpm_0.1Nm_1000N  ImageNet      0.999480  0.999609
+8   C3_1500rpm_0.1Nm_1000N    VibNet      1.000000  1.000000
+9    C4_1500rpm_0.7Nm_400N   Scratch      0.846569  0.739160
+10   C4_1500rpm_0.7Nm_400N  ImageNet      0.870464  0.752305
+11   C4_1500rpm_0.7Nm_400N    VibNet      0.833906  0.764027
+
+--- MÉDIAS ---
+         Bal Accuracy            Macro F1          
+                 mean       std      mean       std
+Strategy                                           
+ImageNet     0.891045  0.144668  0.816932  0.232187
+Scratch      0.896172  0.126798  0.828031  0.209225
+VibNet       0.887627  0.138312  0.838036  0.200334
+
+Resultados salvos em: pu_results.txt
