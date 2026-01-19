@@ -1,0 +1,6 @@
+
+##################################################
+INICIANDO EXPERIMENTO: UORED (Virtual Groups)
+##################################################
+
+>>> Treinando VibNet Source (Excluindo UORED)...
