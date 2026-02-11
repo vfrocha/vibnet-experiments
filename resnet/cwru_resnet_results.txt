@@ -1,0 +1,116 @@
+
+##################################################
+INICIANDO EXPERIMENTO RESNET: CWRU_12k
+##################################################
+
+>>> Treinando VibNet Source (ResNet-18) excluindo CWRU_12k...
+    + CWRU_48k: 2422 imagens
+    + HUST: 3815 imagens
+    + UORED: 7200 imagens
+    + PU: 26028 imagens
+Downloading: "https://download.pytorch.org/models/resnet18-f37072fd.pth" to /home/vfrocha/.cache/torch/hub/checkpoints/resnet18-f37072fd.pth
+    Ep 1 Loss: 0.1834
+    Ep 2 Loss: 0.0645
+    Ep 3 Loss: 0.0640
+    Ep 4 Loss: 0.0557
+    Ep 5 Loss: 0.0491
+Condições: ['Load_0HP', 'Load_1HP', 'Load_2HP', 'Load_3HP']
+Classes: {'Class_0': 0, 'Class_1': 1, 'Class_2': 2, 'Class_3': 3}
+
+--- Fold: Testando em Load_0HP ---
+   [Scratch] Bal Acc: 0.8891 | F1: 0.8883
+   [ImageNet] Bal Acc: 0.9468 | F1: 0.9465
+   [VibNet] Bal Acc: 0.8857 | F1: 0.8845
+
+--- Fold: Testando em Load_1HP ---
+   [Scratch] Bal Acc: 0.9986 | F1: 0.9987
+   [ImageNet] Bal Acc: 0.9904 | F1: 0.9902
+   [VibNet] Bal Acc: 0.9836 | F1: 0.9835
+
+--- Fold: Testando em Load_2HP ---
+   [Scratch] Bal Acc: 1.0000 | F1: 1.0000
+   [ImageNet] Bal Acc: 0.9997 | F1: 0.9997
+   [VibNet] Bal Acc: 0.9997 | F1: 0.9997
+
+--- Fold: Testando em Load_3HP ---
+   [Scratch] Bal Acc: 0.9863 | F1: 0.9864
+   [ImageNet] Bal Acc: 0.9831 | F1: 0.9835
+   [VibNet] Bal Acc: 0.9762 | F1: 0.9760
+
+##################################################
+INICIANDO EXPERIMENTO RESNET: CWRU_48k
+##################################################
+
+>>> Treinando VibNet Source (ResNet-18) excluindo CWRU_48k...
+    + CWRU_12k: 10088 imagens
+    + HUST: 3815 imagens
+    + UORED: 7200 imagens
+    + PU: 26028 imagens
+    Ep 1 Loss: 0.1871
+    Ep 2 Loss: 0.0615
+    Ep 3 Loss: 0.0527
+    Ep 4 Loss: 0.0515
+    Ep 5 Loss: 0.0504
+Condições: ['Load_0HP', 'Load_1HP', 'Load_2HP', 'Load_3HP']
+Classes: {'Class_1': 0, 'Class_2': 1, 'Class_3': 2}
+
+--- Fold: Testando em Load_0HP ---
+   [Scratch] Bal Acc: 0.9767 | F1: 0.9766
+   [ImageNet] Bal Acc: 0.9600 | F1: 0.9599
+   [VibNet] Bal Acc: 0.8150 | F1: 0.8201
+
+--- Fold: Testando em Load_1HP ---
+   [Scratch] Bal Acc: 1.0000 | F1: 1.0000
+   [ImageNet] Bal Acc: 0.9972 | F1: 0.9972
+   [VibNet] Bal Acc: 1.0000 | F1: 1.0000
+
+--- Fold: Testando em Load_2HP ---
+   [Scratch] Bal Acc: 0.9986 | F1: 0.9986
+   [ImageNet] Bal Acc: 0.9944 | F1: 0.9944
+   [VibNet] Bal Acc: 1.0000 | F1: 1.0000
+
+--- Fold: Testando em Load_3HP ---
+   [Scratch] Bal Acc: 0.9569 | F1: 0.9569
+   [ImageNet] Bal Acc: 0.9847 | F1: 0.9847
+   [VibNet] Bal Acc: 0.9764 | F1: 0.9764
+
+
+==================================================
+RELATÓRIO FINAL CWRU - RESNET18
+==================================================
+     Dataset Test Condition  Strategy  Bal Accuracy  Macro F1
+0   CWRU_12k       Load_0HP   Scratch      0.889053  0.888349
+1   CWRU_12k       Load_0HP  ImageNet      0.946765  0.946537
+2   CWRU_12k       Load_0HP    VibNet      0.885709  0.884473
+3   CWRU_12k       Load_1HP   Scratch      0.998629  0.998657
+4   CWRU_12k       Load_1HP  ImageNet      0.990406  0.990205
+5   CWRU_12k       Load_1HP    VibNet      0.983553  0.983522
+6   CWRU_12k       Load_2HP   Scratch      1.000000  1.000000
+7   CWRU_12k       Load_2HP  ImageNet      0.999653  0.999662
+8   CWRU_12k       Load_2HP    VibNet      0.999671  0.999671
+9   CWRU_12k       Load_3HP   Scratch      0.986257  0.986355
+10  CWRU_12k       Load_3HP  ImageNet      0.983132  0.983517
+11  CWRU_12k       Load_3HP    VibNet      0.976243  0.976049
+12  CWRU_48k       Load_0HP   Scratch      0.976667  0.976638
+13  CWRU_48k       Load_0HP  ImageNet      0.960000  0.959936
+14  CWRU_48k       Load_0HP    VibNet      0.815000  0.820082
+15  CWRU_48k       Load_1HP   Scratch      1.000000  1.000000
+16  CWRU_48k       Load_1HP  ImageNet      0.997222  0.997222
+17  CWRU_48k       Load_1HP    VibNet      1.000000  1.000000
+18  CWRU_48k       Load_2HP   Scratch      0.998611  0.998611
+19  CWRU_48k       Load_2HP  ImageNet      0.994444  0.994435
+20  CWRU_48k       Load_2HP    VibNet      1.000000  1.000000
+21  CWRU_48k       Load_3HP   Scratch      0.956944  0.956860
+22  CWRU_48k       Load_3HP  ImageNet      0.984722  0.984732
+23  CWRU_48k       Load_3HP    VibNet      0.976389  0.976408
+
+--- RESUMO ---
+                  Bal Accuracy            Macro F1          
+                          mean       std      mean       std
+Dataset  Strategy                                           
+CWRU_12k ImageNet     0.979989  0.023158  0.979980  0.023259
+         Scratch      0.968485  0.053314  0.968340  0.053680
+         VibNet       0.961294  0.051332  0.960929  0.051915
+CWRU_48k ImageNet     0.984097  0.016935  0.984081  0.016964
+         Scratch      0.983056  0.020426  0.983027  0.020465
+         VibNet       0.947847  0.089261  0.949123  0.086743
