@@ -20,7 +20,7 @@ Clone o repositório:
 
 ```Bash
 git clone [https://github.com/SEU_USUARIO/SEU_REPOSITORIO.git](https://github.com/SEU_USUARIO/SEU_REPOSITORIO.git)
-cd SEU\_REPOSITORIO
+cd SEU_REPOSITORIO
 ```
 Instale as dependências:
 Recomenda-se o uso de um ambiente virtual (venv ou conda).
@@ -31,7 +31,7 @@ Prepare os dados:
 Garanta que a pasta dataset_final/ esteja na raiz com a estrutura esperada pelos carregadores de dados (VibDataset).
 ```
 
-## 🚀 Como Executar os Experimentos
+##  Como Executar os Experimentos
 Os scripts executam automaticamente duas etapas fundamentais:
 
 * Etapa Fonte (Source): Pré-treinamento do backbone em domínios correlatos.
@@ -39,7 +39,7 @@ Os scripts executam automaticamente duas etapas fundamentais:
 * Para rodar o experimento principal com DenseNet-121 na base CWRU Unificada:
 
 ```Bash
-python experiments/densenet/cwru\_unified\_exp\_v2.py
+python experiments/densenet/cwru_unified_exp_v2.py
 ```
 
 Estratégias Comparadas:
