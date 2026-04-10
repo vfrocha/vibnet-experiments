@@ -56,3 +56,13 @@ Para garantir robustez estatística, o sistema reporta a média e o desvio padr�
 * Balanced Accuracy (Acurácia balanceada para classes desiguais).
 * Macro F1-Score (Média harmônica entre precisão e recall).
 * Macro AUC (Área sob a curva ROC calculada via Softmax).
+
+## 🛠️ Pré-processamento (Geração de Imagens)
+
+Antes de iniciar os experimentos, é necessário converter os sinais brutos (`.mat`, `.csv`, etc.) em espectrogramas de imagem. Este projeto utiliza uma Transformada de Fourier de Curto Prazo (STFT) adaptada para gerar imagens RGB de 512x256.
+
+Para preparar as bases de dados (CWRU, HUST, PU, UORED), execute:
+
+```bash
+python scripts/prepare_datasets.py
+```
