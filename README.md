@@ -12,37 +12,38 @@ Clone o repositório e instale as dependências:
 ```bash
 git clone [https://github.com/SEU_USUARIO/SEU_REPOSITORIO.git](https://github.com/SEU_USUARIO/SEU_REPOSITORIO.git)
 cd SEU_REPOSITORIO
-pip install -r requirements.txtI
+pip install -r requirements.txt
 ```
 
 ## ⚙️ Instalação e Requisitos
 Clone o repositório:
 
-Bash
+```Bash
 git clone [https://github.com/SEU_USUARIO/SEU_REPOSITORIO.git](https://github.com/SEU_USUARIO/SEU_REPOSITORIO.git)
-cd SEU_REPOSITORIO
+cd SEU\_REPOSITORIO
+```
 Instale as dependências:
 Recomenda-se o uso de um ambiente virtual (venv ou conda).
 
-Bash
+```Bash
 pip install -r requirements.txt
 Prepare os dados:
 Garanta que a pasta dataset_final/ esteja na raiz com a estrutura esperada pelos carregadores de dados (VibDataset).
+```
 
 ## 🚀 Como Executar os Experimentos
 Os scripts executam automaticamente duas etapas fundamentais:
 
-Etapa Fonte (Source): Pré-treinamento do backbone em domínios correlatos.
+* Etapa Fonte (Source): Pré-treinamento do backbone em domínios correlatos.
+* Etapa Alvo (Target): Fine-tuning e teste no domínio alvo usando a técnica Leave-One-Condition-Out (LODO-CV).
+* Para rodar o experimento principal com DenseNet-121 na base CWRU Unificada:
 
-Etapa Alvo (Target): Fine-tuning e teste no domínio alvo usando a técnica Leave-One-Condition-Out (LODO-CV).
+```Bash
+python experiments/densenet/cwru\_unified\_exp\_v2.py
+```
 
-Para rodar o experimento principal com DenseNet-121 na base CWRU Unificada:
-
-Bash
-python experiments/densenet/cwru_unified_exp_v2.py
 Estratégias Comparadas:
 O script avalia e compara quatro tipos de inicialização na mesma rodada:
-
 * Scratch: Pesos aleatórios.
 * ImageNet: Pesos pré-treinados do dataset ImageNet.
 * VibNet\_from\_Scratch: Pré-treino em vibração iniciando de pesos aleatórios.
