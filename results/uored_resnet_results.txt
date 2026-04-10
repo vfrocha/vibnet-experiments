@@ -1,0 +1,69 @@
+
+##################################################
+INICIANDO EXPERIMENTO RESNET: UORED (Virtual Groups)
+##################################################
+
+>>> Treinando VibNet Source (ResNet-18) excluindo UORED...
+    + CWRU_12k: 10088 imagens
+    + CWRU_48k: 2422 imagens
+    + HUST: 3815 imagens
+    + PU: 26028 imagens
+    Ep 1 Loss: 0.1621
+    Ep 2 Loss: 0.0339
+    Ep 3 Loss: 0.0278
+    Ep 4 Loss: 0.0171
+    Ep 5 Loss: 0.0195
+
+--- Fold: Testando em Group_A [1, 6, 11, 16] ---
+   [Scratch] Bal Acc: 0.7062 | F1: 0.6952
+   [ImageNet] Bal Acc: 0.8021 | F1: 0.8006
+   [VibNet] Bal Acc: 0.4875 | F1: 0.4554
+
+--- Fold: Testando em Group_B [2, 7, 12, 17] ---
+   [Scratch] Bal Acc: 0.4229 | F1: 0.4477
+   [ImageNet] Bal Acc: 0.7792 | F1: 0.7724
+   [VibNet] Bal Acc: 0.7083 | F1: 0.6962
+
+--- Fold: Testando em Group_C [3, 8, 13, 18] ---
+   [Scratch] Bal Acc: 0.7229 | F1: 0.6645
+   [ImageNet] Bal Acc: 0.7729 | F1: 0.7522
+   [VibNet] Bal Acc: 0.9500 | F1: 0.9498
+
+--- Fold: Testando em Group_D [4, 9, 14, 19] ---
+   [Scratch] Bal Acc: 0.7646 | F1: 0.7495
+   [ImageNet] Bal Acc: 0.8208 | F1: 0.8159
+   [VibNet] Bal Acc: 0.8396 | F1: 0.8358
+
+--- Fold: Testando em Group_E [5, 10, 15, 20] ---
+   [Scratch] Bal Acc: 0.4896 | F1: 0.4329
+   [ImageNet] Bal Acc: 0.5479 | F1: 0.4776
+   [VibNet] Bal Acc: 0.3563 | F1: 0.3184
+
+
+==================================================
+RELATÓRIO FINAL UORED - RESNET18
+==================================================
+   Dataset Test Condition  Strategy  Bal Accuracy  Macro F1
+0    UORED        Group_A   Scratch      0.706250  0.695249
+1    UORED        Group_A  ImageNet      0.802083  0.800586
+2    UORED        Group_A    VibNet      0.487500  0.455412
+3    UORED        Group_B   Scratch      0.422917  0.447685
+4    UORED        Group_B  ImageNet      0.779167  0.772405
+5    UORED        Group_B    VibNet      0.708333  0.696217
+6    UORED        Group_C   Scratch      0.722917  0.664523
+7    UORED        Group_C  ImageNet      0.772917  0.752233
+8    UORED        Group_C    VibNet      0.950000  0.949823
+9    UORED        Group_D   Scratch      0.764583  0.749496
+10   UORED        Group_D  ImageNet      0.820833  0.815887
+11   UORED        Group_D    VibNet      0.839583  0.835846
+12   UORED        Group_E   Scratch      0.489583  0.432937
+13   UORED        Group_E  ImageNet      0.547917  0.477603
+14   UORED        Group_E    VibNet      0.356250  0.318429
+
+--- RESUMO ---
+         Bal Accuracy            Macro F1          
+                 mean       std      mean       std
+Strategy                                           
+ImageNet     0.744583  0.111576  0.723743  0.139785
+Scratch      0.621250  0.153930  0.597978  0.147202
+VibNet       0.668333  0.245132  0.651145  0.261900

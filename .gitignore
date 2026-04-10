@@ -1,0 +1,4 @@
+dataset_final/
+data/
+__pycache__/
+*.pyc
