@@ -5,3 +5,6 @@ numpy
 scikit-learn
 tqdm
 Pillow
+vibdata==1.1.1
+signalAI==0.0.4
+opencv-python
