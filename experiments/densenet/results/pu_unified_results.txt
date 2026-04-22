@@ -1,0 +1,6 @@
+
+##################################################
+INICIANDO EXPERIMENTO: PU UNIFICADO
+##################################################
+
+>>> Treinando VibNet Source (Excluindo PU) | Iniciando de: Scratch...
