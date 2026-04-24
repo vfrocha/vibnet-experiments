@@ -1,0 +1,47 @@
+
+##################################################
+INICIANDO EXPERIMENTO: UORED UNIFICADO
+##################################################
+
+>>> Treinando VibNet Source (Excluindo UORED) | Start: scratch
+
+>>> Treinando VibNet Source (Excluindo UORED) | Start: imagenet
+
+--- Fold: Testando em Group_A (['Bearing_1', 'Bearing_6', 'Bearing_11', 'Bearing_16']) ---
+   [Scratch] Acc: 0.7667 | Bal Acc: 0.7212 | F1: 0.6805 | AUC: nan
+   [ImageNet] Acc: 0.8771 | Bal Acc: 0.8613 | F1: 0.8607 | AUC: nan
+   [VibNet_from_Scratch] Acc: 0.7500 | Bal Acc: 0.7675 | F1: 0.7434 | AUC: nan
+   [VibNet_from_ImageNet] Acc: 0.7833 | Bal Acc: 0.7475 | F1: 0.7592 | AUC: nan
+
+--- Fold: Testando em Group_B (['Bearing_2', 'Bearing_7', 'Bearing_12', 'Bearing_17']) ---
+   [Scratch] Acc: 0.8479 | Bal Acc: 0.8175 | F1: 0.8280 | AUC: nan
+   [ImageNet] Acc: 0.9771 | Bal Acc: 0.9800 | F1: 0.9777 | AUC: nan
+   [VibNet_from_Scratch] Acc: 0.8083 | Bal Acc: 0.7700 | F1: 0.7825 | AUC: nan
+   [VibNet_from_ImageNet] Acc: 0.9250 | Bal Acc: 0.9100 | F1: 0.9268 | AUC: nan
+
+--- Fold: Testando em Group_C (['Bearing_3', 'Bearing_8', 'Bearing_13', 'Bearing_18']) ---
+   [Scratch] Acc: 0.6292 | Bal Acc: 0.5900 | F1: 0.5338 | AUC: nan
+   [ImageNet] Acc: 0.7521 | Bal Acc: 0.7087 | F1: 0.6748 | AUC: nan
+   [VibNet_from_Scratch] Acc: 0.5042 | Bal Acc: 0.4275 | F1: 0.3607 | AUC: nan
+   [VibNet_from_ImageNet] Acc: 0.5167 | Bal Acc: 0.4263 | F1: 0.3652 | AUC: nan
+
+--- Fold: Testando em Group_D (['Bearing_4', 'Bearing_9', 'Bearing_14', 'Bearing_19']) ---
+   [Scratch] Acc: 0.7063 | Bal Acc: 0.6987 | F1: 0.6481 | AUC: nan
+   [ImageNet] Acc: 0.7500 | Bal Acc: 0.7500 | F1: 0.7323 | AUC: nan
+   [VibNet_from_Scratch] Acc: 0.7667 | Bal Acc: 0.7600 | F1: 0.7058 | AUC: nan
+   [VibNet_from_ImageNet] Acc: 0.7063 | Bal Acc: 0.6575 | F1: 0.6183 | AUC: nan
+
+--- Fold: Testando em Group_E (['Bearing_5', 'Bearing_10', 'Bearing_15', 'Bearing_20']) ---
+   [Scratch] Acc: 0.7604 | Bal Acc: 0.7562 | F1: 0.6698 | AUC: nan
+   [ImageNet] Acc: 0.8063 | Bal Acc: 0.7737 | F1: 0.7197 | AUC: nan
+   [VibNet_from_Scratch] Acc: 0.6958 | Bal Acc: 0.7175 | F1: 0.6436 | AUC: nan
+   [VibNet_from_ImageNet] Acc: 0.7688 | Bal Acc: 0.7737 | F1: 0.7274 | AUC: nan
+
+RESUMO UORED
+                      Accuracy           Bal Accuracy            Macro F1           Macro AUC    
+                          mean       std         mean       std      mean       std      mean std
+Strategy                                                                                         
+ImageNet              0.832500  0.095987      0.81475  0.107911  0.793002  0.124216       NaN NaN
+Scratch               0.742083  0.080894      0.71675  0.083846  0.672024  0.104991       NaN NaN
+VibNet_from_ImageNet  0.740000  0.148279      0.70300  0.179231  0.679390  0.207565       NaN NaN
+VibNet_from_Scratch   0.705000  0.119293      0.68850  0.147443  0.647215  0.168168       NaN NaN

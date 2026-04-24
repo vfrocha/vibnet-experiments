@@ -1,0 +1,31 @@
+
+>>> Treinando VibNet Source (Excluindo HUST) | Start: scratch
+
+>>> Treinando VibNet Source (Excluindo HUST) | Start: imagenet
+
+--- Fold: Testando em Load_0W ---
+   [Scratch] Acc: 0.9402 | Bal Acc: 0.9354 | F1: 0.9374 | AUC: 0.9904
+   [ImageNet] Acc: 0.9356 | Bal Acc: 0.9238 | F1: 0.9273 | AUC: 0.9940
+   [VibNet_from_Scratch] Acc: 0.9119 | Bal Acc: 0.9069 | F1: 0.9091 | AUC: 0.9938
+   [VibNet_from_ImageNet] Acc: 0.9287 | Bal Acc: 0.9235 | F1: 0.9241 | AUC: 0.9897
+
+--- Fold: Testando em Load_200W ---
+   [Scratch] Acc: 0.9937 | Bal Acc: 0.9928 | F1: 0.9931 | AUC: 0.9999
+   [ImageNet] Acc: 0.9921 | Bal Acc: 0.9916 | F1: 0.9908 | AUC: 1.0000
+   [VibNet_from_Scratch] Acc: 0.9976 | Bal Acc: 0.9972 | F1: 0.9976 | AUC: 1.0000
+   [VibNet_from_ImageNet] Acc: 0.9937 | Bal Acc: 0.9932 | F1: 0.9935 | AUC: 1.0000
+
+--- Fold: Testando em Load_400W ---
+   [Scratch] Acc: 0.9366 | Bal Acc: 0.9391 | F1: 0.9326 | AUC: 0.9829
+   [ImageNet] Acc: 0.9743 | Bal Acc: 0.9706 | F1: 0.9688 | AUC: 0.9934
+   [VibNet_from_Scratch] Acc: 0.9607 | Bal Acc: 0.9597 | F1: 0.9570 | AUC: 0.9953
+   [VibNet_from_ImageNet] Acc: 0.9383 | Bal Acc: 0.9339 | F1: 0.9307 | AUC: 0.9962
+
+RESUMO HUST
+                      Accuracy           Bal Accuracy            Macro F1           Macro AUC          
+                          mean       std         mean       std      mean       std      mean       std
+Strategy                                                                                               
+ImageNet              0.967351  0.028866     0.962003  0.034696  0.962307  0.032224  0.995785  0.003655
+Scratch               0.956848  0.031936     0.955776  0.032103  0.954355  0.033638  0.991080  0.008527
+VibNet_from_ImageNet  0.953551  0.035065     0.950195  0.037601  0.949473  0.038293  0.995284  0.005198
+VibNet_from_Scratch   0.956736  0.043011     0.954620  0.045361  0.954564  0.044266  0.996368  0.003225
