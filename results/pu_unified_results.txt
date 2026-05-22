@@ -1,43 +1,13 @@
 
-##################################################
-INICIANDO EXPERIMENTO: PU UNIFICADO
-##################################################
-
->>> Treinando VibNet Source (Excluindo PU) | Iniciando de: Scratch...
-
->>> Treinando VibNet Source (Excluindo PU) | Iniciando de: ImageNet...
-
---- Fold: Testando em C1_1500rpm_0.7Nm_1000N ---
-   [Scratch] Acc: 0.9998 | Bal Acc: 0.9998 | F1: 0.9999 | AUC: 1.0000
-   [ImageNet] Acc: 1.0000 | Bal Acc: 1.0000 | F1: 1.0000 | AUC: 1.0000
-   [VibNet_from_Scratch] Acc: 1.0000 | Bal Acc: 1.0000 | F1: 1.0000 | AUC: 1.0000
-   [VibNet_from_ImageNet] Acc: 0.9989 | Bal Acc: 0.9988 | F1: 0.9991 | AUC: 1.0000
-
---- Fold: Testando em C2_900rpm_0.7Nm_1000N ---
-   [Scratch] Acc: 0.5281 | Bal Acc: 0.7237 | F1: 0.5334 | AUC: 0.9248
-   [ImageNet] Acc: 0.5178 | Bal Acc: 0.6913 | F1: 0.5204 | AUC: 0.8807
-   [VibNet_from_Scratch] Acc: 0.4767 | Bal Acc: 0.6791 | F1: 0.4786 | AUC: 0.8948
-   [VibNet_from_ImageNet] Acc: 0.4776 | Bal Acc: 0.6697 | F1: 0.4881 | AUC: 0.9243
-
---- Fold: Testando em C3_1500rpm_0.1Nm_1000N ---
-   [Scratch] Acc: 0.9998 | Bal Acc: 0.9998 | F1: 0.9999 | AUC: 1.0000
-   [ImageNet] Acc: 1.0000 | Bal Acc: 1.0000 | F1: 1.0000 | AUC: 1.0000
-   [VibNet_from_Scratch] Acc: 1.0000 | Bal Acc: 1.0000 | F1: 1.0000 | AUC: 1.0000
-   [VibNet_from_ImageNet] Acc: 0.9997 | Bal Acc: 0.9997 | F1: 0.9997 | AUC: 1.0000
-
---- Fold: Testando em C4_1500rpm_0.7Nm_400N ---
-   [Scratch] Acc: 0.6660 | Bal Acc: 0.7899 | F1: 0.6553 | AUC: 0.8954
-   [ImageNet] Acc: 0.8639 | Bal Acc: 0.8999 | F1: 0.8403 | AUC: 0.9838
-   [VibNet_from_Scratch] Acc: 0.7182 | Bal Acc: 0.8405 | F1: 0.6996 | AUC: 0.9850
-   [VibNet_from_ImageNet] Acc: 0.7248 | Bal Acc: 0.8395 | F1: 0.7288 | AUC: 0.9503
-
 ==================================================
-RESUMO PU
+INICIANDO EXPERIMENTO PU UNIFICADO
 ==================================================
-                      Accuracy           Bal Accuracy            Macro F1           Macro AUC          
-                          mean       std         mean       std      mean       std      mean       std
-Strategy                                                                                               
-ImageNet              0.845408  0.227664     0.897791  0.145535  0.840156  0.226106  0.966133  0.057460
-Scratch               0.798449  0.239271     0.878326  0.142874  0.797101  0.239364  0.955049  0.053270
-VibNet_from_ImageNet  0.800264  0.251023     0.876895  0.157349  0.803939  0.246167  0.968636  0.037738
-VibNet_from_Scratch   0.798721  0.252467     0.879911  0.153518  0.794572  0.253786  0.969973  0.050576
+Pesos encontrados: /home/vfrocha/newvibnetexperiments/weights/vibnet_source_no_PU_imagenet.pth. Pulando pré-treino.
+Pesos encontrados: /home/vfrocha/newvibnetexperiments/weights/vibnet_source_no_PU_scratch.pth. Pulando pré-treino.
+
+--- Fold: Testando em C1 ---
+   -> Estratégia: Scratch
+      Resultado: Bal Acc: nan | F1: nan
+   -> Estratégia: ImageNet
+      Resultado: Bal Acc: nan | F1: nan
+   -> Estratégia: VibNet_from_Scratch
