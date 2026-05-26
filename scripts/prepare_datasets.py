@@ -153,8 +153,11 @@ def get_names(ds_name, meta):
     label_name = f"Class_{orig_label}"
     return cond, label_name
 
-# --- EXECUÇÃO PRINCIPAL ---
-BASE_DRIVE = "/home/vfrocha/VibNet_Project"
+# Pega automaticamente o diretório base do usuário atual (ex: /home/vfrocha ou /home/flavio)
+USER_HOME = os.path.expanduser("~")
+
+# Constrói o caminho relativo a esse usuário
+BASE_DRIVE = os.path.join(USER_HOME, "VibNet_Project")
 RAW_DATA_DIR = os.path.join(BASE_DRIVE, "raw_data")
 FINAL_IMG_DIR = os.path.join(BASE_DRIVE, "dataset_final")
 
