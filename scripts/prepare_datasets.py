@@ -164,7 +164,7 @@ def extract_signal(item):
     if isinstance(raw, np.ndarray): return raw
     return None
 
-datasets = ["UORED"]#["CWRU", "HUST", "PU", "UORED"]
+datasets = ["CWRU", "HUST", "PU", "UORED"]
 
 for ds_name in datasets:
     print(f"\n=== Processando {ds_name} ===")
