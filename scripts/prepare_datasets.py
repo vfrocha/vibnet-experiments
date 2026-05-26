@@ -171,64 +171,66 @@ def extract_signal(item):
 
 datasets = ["CWRU", "HUST", "PU", "UORED"]
 
-# Dicionário com os links das PASTAS do Google Drive (onde estão os zips fatiados)
-DRIVE_FOLDER_LINKS = {
-    "CWRU": "https://drive.google.com/drive/folders/1GgzPSW9rF9_Z6OZRO8x0Jiw5vifYh45J?usp=drive_link",
-    "HUST": "https://drive.google.com/drive/folders/1kW7oYsezMjXpurwFqemsj6XdX8tmDwjn?usp=drive_link",
-    "PU": "https://drive.google.com/drive/folders/1_qoCWSXw1KHQRe9kEtcn_phkgLizVj5n?usp=drive_link",
-    "UORED": "https://drive.google.com/drive/folders/1-hHuXf1ruQh2Ro6Pnk2fKqg37rEiWSXK?usp=drive_link"
-}
+# 1. NOVO LINK DA SUA PASTA 'zip' UNIFICADA
+# Substitua o link abaixo pelo link de compartilhamento da pasta "zip" do seu drive
+MASTER_ZIP_LINK = "https://drive.google.com/drive/folders/SEU_ID_DA_PASTA_ZIP_AQUI?usp=drive_link"
 
-datasets = ["CWRU", "HUST", "PU", "UORED"]
+# Pasta temporária onde todos os zips serão baixados juntos
+PASTA_DOWNLOAD_ZIPS = os.path.join(RAW_DATA_DIR, "zips_baixados")
+os.makedirs(PASTA_DOWNLOAD_ZIPS, exist_ok=True)
 
+# =====================================================================
+# ETAPA A: DOWNLOAD ÚNICO DA PASTA MASTER (FORA DO LOOP)
+# =====================================================================
+if len(os.listdir(PASTA_DOWNLOAD_ZIPS)) == 0:
+    print("📥 Pasta de zips vazia. Baixando TODOS os arquivos do Google Drive de uma vez...")
+    try:
+        gdown.download_folder(
+            url=MASTER_ZIP_LINK, 
+            output=PASTA_DOWNLOAD_ZIPS, 
+            quiet=False
+            # remaining_ok=True  <-- Removido pois sua versão do gdown não suporta
+        )
+        print("✅ Download de todos os zips concluído.")
+    except Exception as e:
+        print(f"❌ Falha crítica no download da pasta Master: {e}")
+else:
+    print("💾 Arquivos zip já detectados localmente. Pulando download da nuvem.")
+
+# =====================================================================
+# ETAPA B: PROCESSAMENTO POR DATASET
+# =====================================================================
 for ds_name in datasets:
     print(f"\n=== Processando {ds_name} ===")
     
     pasta_destino = os.path.join(RAW_DATA_DIR, f"{ds_name}_raw")
     os.makedirs(pasta_destino, exist_ok=True)
-    
-    # 1. VERIFICAÇÃO E DOWNLOAD AUTOMÁTICO DA PASTA DO DRIVE
-    # Se a pasta estiver vazia, significa que precisamos baixar os dados
-    if len(os.listdir(pasta_destino)) == 0:
-        if ds_name in DRIVE_FOLDER_LINKS:
-            print(f"📥 Pasta local vazia. Baixando fatias de {ds_name} do Google Drive...")
-            try:
-                # O gdown vai baixar todos os arquivos contidos na pasta do link
-                gdown.download_folder(
-                    url=DRIVE_FOLDER_LINKS[ds_name], 
-                    output=pasta_destino, 
-                    quiet=False, 
-                    remaining_ok=True
-                )
-                print(f"✅ Download das fatias de {ds_name} concluído.")
-            except Exception as e:
-                print(f"❌ Falha crítica no download do Drive para {ds_name}: {e}")
-                continue
-    else:
-        print(f"💾 Arquivos locais detectados para {ds_name}. Pulando download.")
 
-    # 2. EXTRAÇÃO AUTOMÁTICA DOS ARQUIVOS COMPACTADOS (.ZIP)
-    # Procura por qualquer arquivo zip baixado e extrai programaticamente
-    arquivos_na_pasta = os.listdir(pasta_destino)
-    arquivos_zip = [f for f in arquivos_na_pasta if f.lower().endswith('.zip')]
+    # 2. EXTRAÇÃO INTELIGENTE DOS ARQUIVOS COMPACTADOS
+    # Procura na pasta de downloads apenas os zips que pertencem a este dataset (ex: contém "CWRU")
+    arquivos_baixados = os.listdir(PASTA_DOWNLOAD_ZIPS)
+    arquivos_zip_dataset = [f for f in arquivos_baixados if f.lower().endswith('.zip') and ds_name in f]
     
-    if arquivos_zip:
-        print(f"📦 Extraindo arquivos compactados automaticamente para {ds_name}...")
-        for zip_name in arquivos_zip:
-            caminho_zip = os.path.join(pasta_destino, zip_name)
-            try:
-                with zipfile.ZipFile(caminho_zip, 'r') as zip_ref:
-                    zip_ref.extractall(pasta_destino)
-                # Remove o zip após extrair para liberar espaço em disco na Hydra
-                os.remove(caminho_zip)
-            except Exception as e:
-                print(f"⚠️ Erro ao extrair o arquivo {zip_name}: {e}")
-        print(f"✨ Estrutura de dados descompactada com sucesso.")
+    if arquivos_zip_dataset:
+        # Verifica se a pasta destino já tem arquivos (para não extrair de novo toda vez)
+        if len(os.listdir(pasta_destino)) == 0:
+            print(f"📦 Extraindo {len(arquivos_zip_dataset)} arquivos compactados para {ds_name}...")
+            for zip_name in arquivos_zip_dataset:
+                caminho_zip = os.path.join(PASTA_DOWNLOAD_ZIPS, zip_name)
+                try:
+                    with zipfile.ZipFile(caminho_zip, 'r') as zip_ref:
+                        zip_ref.extractall(pasta_destino)
+                except Exception as e:
+                    print(f"⚠️ Erro ao extrair o arquivo {zip_name}: {e}")
+            print(f"✨ Estrutura de dados descompactada com sucesso.")
+        else:
+            print(f"📦 Dados de {ds_name} já estavam descompactados.")
+    else:
+        print(f"⚠️ Nenhum arquivo zip encontrado para {ds_name} na pasta de downloads.")
 
     # 3. CARREGAMENTO DOS DADOS PELA BIBLIOTECA VIBDATA
     try:
         raw_cls = getattr(raw_datasets, f"{ds_name}_raw")
-        # download=False força o uso dos dados que acabamos de baixar e extrair
         ds = raw_cls(RAW_DATA_DIR, download=False)
     except Exception as e: 
         print(f"❌ ERRO GRAVE ao inicializar a base {ds_name} no vibdata: {e}")
