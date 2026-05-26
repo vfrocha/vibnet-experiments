@@ -173,7 +173,7 @@ datasets = ["CWRU", "HUST", "PU", "UORED"]
 
 # 1. NOVO LINK DA SUA PASTA 'zip' UNIFICADA
 # Substitua o link abaixo pelo link de compartilhamento da pasta "zip" do seu drive
-MASTER_ZIP_LINK = "https://drive.google.com/drive/folders/SEU_ID_DA_PASTA_ZIP_AQUI?usp=drive_link"
+MASTER_ZIP_LINK = "https://drive.google.com/drive/folders/1QTzuAWcyKtTjHFU9o2OfK2Gp1x9Swihe?usp=drive_link"
 
 # Pasta temporária onde todos os zips serão baixados juntos
 PASTA_DOWNLOAD_ZIPS = os.path.join(RAW_DATA_DIR, "zips_baixados")
@@ -212,7 +212,6 @@ for ds_name in datasets:
     arquivos_zip_dataset = [f for f in arquivos_baixados if f.lower().endswith('.zip') and ds_name in f]
     
     if arquivos_zip_dataset:
-        # Verifica se a pasta destino já tem arquivos (para não extrair de novo toda vez)
         if len(os.listdir(pasta_destino)) == 0:
             print(f"📦 Extraindo {len(arquivos_zip_dataset)} arquivos compactados para {ds_name}...")
             for zip_name in arquivos_zip_dataset:
@@ -222,6 +221,18 @@ for ds_name in datasets:
                         zip_ref.extractall(pasta_destino)
                 except Exception as e:
                     print(f"⚠️ Erro ao extrair o arquivo {zip_name}: {e}")
+            
+            # --- CORREÇÃO DA PASTA DUPLA DO GOOGLE DRIVE ---
+            # Verifica se ao extrair, foi criada uma pasta com o mesmo nome dentro do destino
+            subpasta_provavel = os.path.join(pasta_destino, f"{ds_name}_raw")
+            if os.path.isdir(subpasta_provavel):
+                print(f"🔧 Corrigindo estrutura de pastas duplas para {ds_name}...")
+                # Move todos os arquivos de dentro da subpasta para a pasta raiz correta
+                for arquivo in os.listdir(subpasta_provavel):
+                    shutil.move(os.path.join(subpasta_provavel, arquivo), pasta_destino)
+                # Remove a subpasta vazia para manter a limpeza
+                os.rmdir(subpasta_provavel)
+                
             print(f"✨ Estrutura de dados descompactada com sucesso.")
         else:
             print(f"📦 Dados de {ds_name} já estavam descompactados.")
