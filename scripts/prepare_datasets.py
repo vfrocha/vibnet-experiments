@@ -2,6 +2,7 @@ import os
 import cv2
 import zipfile
 import gdown
+import shutil
 import numpy as np
 import pandas as pd
 import scipy.io
@@ -210,7 +211,7 @@ for ds_name in datasets:
     # Procura na pasta de downloads apenas os zips que pertencem a este dataset (ex: contém "CWRU")
     arquivos_baixados = os.listdir(PASTA_DOWNLOAD_ZIPS)
     arquivos_zip_dataset = [f for f in arquivos_baixados if f.lower().endswith('.zip') and ds_name in f]
-    
+
     if arquivos_zip_dataset:
         if len(os.listdir(pasta_destino)) == 0:
             print(f"📦 Extraindo {len(arquivos_zip_dataset)} arquivos compactados para {ds_name}...")
