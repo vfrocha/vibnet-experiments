@@ -99,7 +99,7 @@ def get_target_splits(dataset_name, test_condition):
 
     for cond in conditions:
         c_path = os.path.join(ds_root, cond)
-        is_test = (cond == test_condition)
+        is_test = cond.startswith(test_condition)
 
         for cls in classes:
             if cls not in cls_map: continue
