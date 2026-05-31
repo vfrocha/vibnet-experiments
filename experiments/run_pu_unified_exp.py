@@ -33,8 +33,8 @@ def run_pu_experiment():
         # Coleta os splits corretamente
         train_x, train_y, test_x, test_y, num_classes = get_target_splits(dataset_name="PU", test_condition=test_cond)
         
-        if len(train_x) == 0:
-            print(f"AVISO: Dados vazios para a condição {test_cond}. Verifique os caminhos.")
+        if len(test_x) == 0 or len(train_x) == 0:
+            print(f"   [AVISO] Faltando dados na condição {test_cond}. Treino: {len(train_x)} | Teste: {len(test_x)}")
             continue
 
         # Monta os tensores
