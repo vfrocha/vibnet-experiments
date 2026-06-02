@@ -55,7 +55,12 @@ class VibNetAutoencoder(nn.Module):
             nn.ConvTranspose2d(32, 3, kernel_size=3, stride=2, padding=1, output_padding=1),
             nn.Sigmoid() # Saída entre 0 e 1 (assumindo imagens normalizadas)
         )
-
+        
+    def forward(self, x):
+        latent = self.encoder(x)
+        reconstruction = self.decoder(latent)
+        return reconstruction, latent
+        
 class VibNetFeatureExtractor(nn.Module):
     def __init__(self, pretrained_ae, num_classes, freeze_encoder=True):
         super(VibNetFeatureExtractor, self).__init__()
@@ -85,8 +90,3 @@ class VibNetFeatureExtractor(nn.Module):
         pooled = self.pool(features)
         out = self.classifier(pooled)
         return out
-
-    def forward(self, x):
-        latent = self.encoder(x)
-        reconstruction = self.decoder(latent)
-        return reconstruction, latent
