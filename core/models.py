@@ -32,3 +32,31 @@ def get_vibnet_model(num_classes, strategy, weights_path=None):
     # Ajusta a última camada para o Target Domain atual
     model.classifier = nn.Linear(n_feat, num_classes)
     return model.to(DEVICE)
+
+class VibNetAutoencoder(nn.Module):
+    def __init__(self):
+        super(VibNetAutoencoder, self).__init__()
+        # ENCODER (Comprime a imagem para o espaço latente)
+        self.encoder = nn.Sequential(
+            nn.Conv2d(3, 32, kernel_size=3, stride=2, padding=1),
+            nn.ReLU(),
+            nn.Conv2d(32, 64, kernel_size=3, stride=2, padding=1),
+            nn.ReLU(),
+            nn.Conv2d(64, 128, kernel_size=3, stride=2, padding=1),
+            nn.ReLU()
+        )
+        
+        # DECODER (Reconstrói a imagem a partir do espaço latente)
+        self.decoder = nn.Sequential(
+            nn.ConvTranspose2d(128, 64, kernel_size=3, stride=2, padding=1, output_padding=1),
+            nn.ReLU(),
+            nn.ConvTranspose2d(64, 32, kernel_size=3, stride=2, padding=1, output_padding=1),
+            nn.ReLU(),
+            nn.ConvTranspose2d(32, 3, kernel_size=3, stride=2, padding=1, output_padding=1),
+            nn.Sigmoid() # Saída entre 0 e 1 (assumindo imagens normalizadas)
+        )
+
+    def forward(self, x):
+        latent = self.encoder(x)
+        reconstruction = self.decoder(latent)
+        return reconstruction, latent
