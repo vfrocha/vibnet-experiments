@@ -7,7 +7,7 @@ Pesos encontrados: /home/vfrocha/newvibnetexperiments/weights/vibnet_source_no_P
 
 --- Fold: Testando em C1 ---
    -> Estratégia: Scratch
-      Resultado: Bal Acc: nan | F1: nan
+      Resultado: Bal Acc: 0.9957 | F1: 0.9956
    -> Estratégia: ImageNet
-      Resultado: Bal Acc: nan | F1: nan
+      Resultado: Bal Acc: 0.9999 | F1: 0.9997
    -> Estratégia: VibNet_from_Scratch

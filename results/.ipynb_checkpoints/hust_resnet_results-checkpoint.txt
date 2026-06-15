@@ -1,0 +1,53 @@
+
+##################################################
+INICIANDO EXPERIMENTO RESNET: HUST
+##################################################
+
+>>> Treinando VibNet Source (ResNet-18) excluindo HUST...
+    + CWRU_12k: 10088 imagens
+    + CWRU_48k: 2422 imagens
+    + UORED: 7200 imagens
+    + PU: 26028 imagens
+    Ep 1 Loss: 0.1586
+    Ep 2 Loss: 0.0619
+    Ep 3 Loss: 0.0564
+    Ep 4 Loss: 0.0424
+    Ep 5 Loss: 0.0539
+
+--- Fold: Testando em Load_0W ---
+   [Scratch] Bal Acc: 0.9409 | F1: 0.9405
+   [ImageNet] Bal Acc: 0.9373 | F1: 0.9386
+   [VibNet] Bal Acc: 0.9272 | F1: 0.9299
+
+--- Fold: Testando em Load_200W ---
+   [Scratch] Bal Acc: 0.9993 | F1: 0.9993
+   [ImageNet] Bal Acc: 0.9966 | F1: 0.9966
+   [VibNet] Bal Acc: 0.9817 | F1: 0.9823
+
+--- Fold: Testando em Load_400W ---
+   [Scratch] Bal Acc: 0.9658 | F1: 0.9641
+   [ImageNet] Bal Acc: 0.9812 | F1: 0.9790
+   [VibNet] Bal Acc: 0.9585 | F1: 0.9548
+
+
+==================================================
+RELATÓRIO FINAL HUST - RESNET18
+==================================================
+  Dataset Test Condition  Strategy  Bal Accuracy  Macro F1
+0    HUST        Load_0W   Scratch      0.940876  0.940459
+1    HUST        Load_0W  ImageNet      0.937267  0.938626
+2    HUST        Load_0W    VibNet      0.927200  0.929912
+3    HUST      Load_200W   Scratch      0.999286  0.999286
+4    HUST      Load_200W  ImageNet      0.996612  0.996573
+5    HUST      Load_200W    VibNet      0.981655  0.982322
+6    HUST      Load_400W   Scratch      0.965781  0.964073
+7    HUST      Load_400W  ImageNet      0.981220  0.979012
+8    HUST      Load_400W    VibNet      0.958506  0.954831
+
+--- RESUMO ---
+         Bal Accuracy            Macro F1          
+                 mean       std      mean       std
+Strategy                                           
+ImageNet     0.971700  0.030797  0.971404  0.029713
+Scratch      0.968648  0.029310  0.967939  0.029603
+VibNet       0.955787  0.027329  0.955688  0.026216

@@ -1,0 +1,13 @@
+
+==================================================
+INICIANDO EXPERIMENTO PU UNIFICADO
+==================================================
+Pesos encontrados: /home/vfrocha/newvibnetexperiments/weights/vibnet_source_no_PU_imagenet.pth. Pulando pré-treino.
+Pesos encontrados: /home/vfrocha/newvibnetexperiments/weights/vibnet_source_no_PU_scratch.pth. Pulando pré-treino.
+
+--- Fold: Testando em C1_1500rpm_0.7Nm_1000N ---
+   -> Estratégia: Scratch
+      Resultado: Bal Acc: 1.0000 | F1: 1.0000
+   -> Estratégia: ImageNet
+      Resultado: Bal Acc: 0.9998 | F1: 0.9999
+   -> Estratégia: VibNet_from_Scratch
