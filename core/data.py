@@ -82,37 +82,49 @@ def load_source_data(target_to_exclude):
     return all_paths, all_labels, offset
 
 
-def get_target_splits(dataset_name, test_condition):
+def get_target_splits(dataset_name, test_condition, predefined_class_map=None):
     """
-    Isola os dados para LODO-CV (Leave-One-Domain-Out).
-    Retorna as listas de caminhos/labels de treino e teste, além do número de classes.
+    Isola os dados para LODO-CV.
+    Aceita test_condition como string ou lista de strings (para grupos virtuais).
+    Aceita um mapa de classes predefinido (essencial para UORED).
     """
     ds_root = os.path.join(DATASET_FINAL, dataset_name)
     conditions = sorted([d for d in os.listdir(ds_root) if os.path.isdir(os.path.join(ds_root, d))])
+    
+    # 1. MAPEAMENTO DE CLASSES (Usa o predefinido ou procura em TODAS as pastas)
+    if predefined_class_map:
+        cls_map = predefined_class_map
+    else:
+        all_classes = set()
+        for c in conditions:
+            c_path = os.path.join(ds_root, c)
+            all_classes.update([d for d in os.listdir(c_path) if os.path.isdir(os.path.join(c_path, d))])
+        cls_map = {c: i for i, c in enumerate(sorted(list(all_classes)))}
 
-    # Mapeamento automático de classes usando a primeira condição
-    sample_path = os.path.join(ds_root, conditions[0])
-    classes = sorted([d for d in os.listdir(sample_path) if os.path.isdir(os.path.join(sample_path, d))])
-    cls_map = {c: i for i, c in enumerate(classes)}
+    # 2. FLEXIBILIDADE PARA GRUPOS
+    if isinstance(test_condition, str):
+        test_condition = [test_condition]
 
     train_x, train_y, test_x, test_y = [], [], [], []
 
+    # 3. SEPARAÇÃO DE TREINO E TESTE
     for cond in conditions:
         c_path = os.path.join(ds_root, cond)
-        is_test = cond.startswith(test_condition)
-
-        for cls in classes:
-            if cls not in cls_map: continue
-            p_cls = os.path.join(c_path, cls)
+        
+        # Verifica se a pasta atual começa com QUALQUER UM dos nomes no grupo de teste
+        is_test = any(cond.startswith(tc) for tc in test_condition)
+        
+        for cls_name, cls_idx in cls_map.items():
+            p_cls = os.path.join(c_path, cls_name)
             if not os.path.exists(p_cls): continue
-
+            
             files = [os.path.join(p_cls, f) for f in os.listdir(p_cls) if f.endswith('.png')]
             if is_test:
                 test_x.extend(files)
-                test_y.extend([cls_map[cls]] * len(files))
+                test_y.extend([cls_idx] * len(files))
             else:
                 train_x.extend(files)
-                train_y.extend([cls_map[cls]] * len(files))
+                train_y.extend([cls_idx] * len(files))
 
     return train_x, train_y, test_x, test_y, len(cls_map)
 
