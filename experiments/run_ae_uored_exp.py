@@ -44,4 +44,51 @@ def run_ae_uored_experiment():
         
         # Pega os splits usando a lista de rolamentos e o mapa forçado
         train_x, train_y, test_x, test_y, num_classes = get_target_splits(
-            dataset_name="UORE
+            dataset_name="UORED", 
+            test_condition=bearings_list, 
+            predefined_class_map=CLASS_MAP_UORED
+        )
+        
+        if len(test_x) == 0 or len(train_x) == 0:
+            print(f"   [AVISO] Dados insuficientes no {group_name}. Treino: {len(train_x)} | Teste: {len(test_x)}")
+            continue
+
+        print(f"   [Dados] Treino: {len(train_x)} imgs | Teste: {len(test_x)} imgs")
+        dataloaders = get_dataloaders(train_x, train_y, test_x, test_y)
+
+        # 3. Instancia o AE base e carrega os pesos aprendidos (reconstrução)
+        base_ae = VibNetAutoencoder()
+        base_ae.load_state_dict(torch.load(ae_w_path, map_location=DEVICE))
+        
+        # 4. Transforma o AE num Classificador
+        # freeze_encoder=True -> O encoder não muda, treinamos APENAS a camada linear final
+        model = VibNetFeatureExtractor(base_ae, num_classes, freeze_encoder=True).to(DEVICE)
+        
+        # 5. Otimizador apenas para os parâmetros que requerem gradiente (camada final)
+        optimizer = optim.Adam(filter(lambda p: p.requires_grad, model.parameters()), lr=0.001)
+        criterion = nn.CrossEntropyLoss()
+        
+        # 6. Roda a avaliação usando o mesmo motor de treino
+        metrics = train_target_fold(model, dataloaders, optimizer, criterion, epochs=8)
+        
+        print(f"      Resultado AE Extractor: Bal Acc: {metrics['Bal Accuracy']:.4f} | F1: {metrics['Macro F1']:.4f}")
+        
+        results.append({
+            "Virtual Group": group_name,
+            "Strategy": "AE_Feature_Extraction",
+            **metrics
+        })
+            
+    return results
+
+if __name__ == "__main__":
+    print("\n" + "="*50)
+    print("INICIANDO EXPERIMENTO AUTOENCODER UORED (VIRTUAL GROUPS)")
+    print("="*50)
+    
+    res = run_ae_uored_experiment()
+    
+    if res:
+        df = pd.DataFrame(res)
+        print("\n--- RESUMO FINAL UORED (AUTOENCODER) ---")
+        print(df.groupby("Strategy")[["Bal Accuracy", "Macro F1"]].agg(['mean', 'std']).to_string())
