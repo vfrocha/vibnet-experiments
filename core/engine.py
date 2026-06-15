@@ -9,6 +9,7 @@ from torch.utils.data import DataLoader
 from tqdm import tqdm
 from torchvision import models
 
+from .models import VibNetAutoencoder
 from .config import DEVICE, WEIGHTS_DIR, BATCH_SIZE
 from .data import VibDataset, data_transforms, load_source_data
 
@@ -116,3 +117,48 @@ def train_target_fold(model, dataloaders, optimizer, criterion, epochs=8):
     }
     
     return metrics
+
+def pre_train_autoencoder_source(target_to_exclude):
+    """
+    Treina o Autoencoder nos domínios fonte usando MSE (Não-supervisionado).
+    """
+    w_filename = f"vibnet_ae_source_no_{target_to_exclude}.pth"
+    w_path = os.path.join(WEIGHTS_DIR, w_filename)
+
+    if os.path.exists(w_path):
+        print(f"Pesos do Autoencoder encontrados: {w_path}. Pulando pré-treino.")
+        return w_path
+
+    print(f"\n>>> Pré-treinando Autoencoder Source (Excluindo {target_to_exclude})")
+    
+    all_paths, all_labels, _ = load_source_data(target_to_exclude)
+    
+    # Prepara os dados (reaproveitando as funções do core)
+    tr_x, val_x, tr_y, val_y = train_test_split(all_paths, all_labels, test_size=0.1, random_state=42)
+    train_loader = DataLoader(VibDataset(tr_x, tr_y, data_transforms['train']), batch_size=BATCH_SIZE, shuffle=True)
+    
+    # Instancia o Autoencoder
+    model = VibNetAutoencoder().to(DEVICE)
+    optimizer = optim.Adam(model.parameters(), lr=0.001)
+    criterion = nn.MSELoss() # <-- A MÁGICA ESTÁ AQUI (Erro de reconstrução)
+
+    for epoch in range(10): # AEs costumam precisar de 10 a 15 épocas para convergir bem
+        model.train()
+        total_loss = 0
+        for inputs, _ in tqdm(train_loader, desc=f"AE Source Ep {epoch+1}", leave=False):
+            inputs = inputs.to(DEVICE)
+            optimizer.zero_grad()
+            
+            # O modelo retorna (imagem_reconstruida, espaco_latente)
+            reconstruction, _ = model(inputs)
+            
+            # A perda é calculada comparando a reconstrução com a imagem ORIGINAL
+            loss = criterion(reconstruction, inputs) 
+            loss.backward()
+            optimizer.step()
+            total_loss += loss.item()
+            
+        print(f"    MSE Loss média: {total_loss/len(train_loader):.4f}")
+
+    torch.save(model.state_dict(), w_path)
+    return w_path

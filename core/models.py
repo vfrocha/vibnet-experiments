@@ -32,3 +32,61 @@ def get_vibnet_model(num_classes, strategy, weights_path=None):
     # Ajusta a última camada para o Target Domain atual
     model.classifier = nn.Linear(n_feat, num_classes)
     return model.to(DEVICE)
+
+class VibNetAutoencoder(nn.Module):
+    def __init__(self):
+        super(VibNetAutoencoder, self).__init__()
+        # ENCODER (Comprime a imagem para o espaço latente)
+        self.encoder = nn.Sequential(
+            nn.Conv2d(3, 32, kernel_size=3, stride=2, padding=1),
+            nn.ReLU(),
+            nn.Conv2d(32, 64, kernel_size=3, stride=2, padding=1),
+            nn.ReLU(),
+            nn.Conv2d(64, 128, kernel_size=3, stride=2, padding=1),
+            nn.ReLU()
+        )
+        
+        # DECODER (Reconstrói a imagem a partir do espaço latente)
+        self.decoder = nn.Sequential(
+            nn.ConvTranspose2d(128, 64, kernel_size=3, stride=2, padding=1, output_padding=1),
+            nn.ReLU(),
+            nn.ConvTranspose2d(64, 32, kernel_size=3, stride=2, padding=1, output_padding=1),
+            nn.ReLU(),
+            nn.ConvTranspose2d(32, 3, kernel_size=3, stride=2, padding=1, output_padding=1),
+            nn.Sigmoid() # Saída entre 0 e 1 (assumindo imagens normalizadas)
+        )
+        
+    def forward(self, x):
+        latent = self.encoder(x)
+        reconstruction = self.decoder(latent)
+        return reconstruction, latent
+        
+class VibNetFeatureExtractor(nn.Module):
+    def __init__(self, pretrained_ae, num_classes, freeze_encoder=True):
+        super(VibNetFeatureExtractor, self).__init__()
+        
+        # 1. Copia APENAS o Encoder do Autoencoder pré-treinado
+        self.encoder = pretrained_ae.encoder
+        
+        # 2. Congela os pesos do Encoder (Feature Extraction puro)
+        if freeze_encoder:
+            for param in self.encoder.parameters():
+                param.requires_grad = False
+                
+        # 3. Cria o cabeçote de classificação
+        # Usamos AdaptiveAvgPool2d para esmagar a dimensão espacial (A x L) para 1x1,
+        # mantendo apenas os 128 canais de profundidade independentemente do tamanho da imagem.
+        self.pool = nn.AdaptiveAvgPool2d((1, 1))
+        self.classifier = nn.Sequential(
+            nn.Flatten(),
+            nn.Dropout(0.3), # Evita overfitting no domínio alvo
+            nn.Linear(128, num_classes) # 128 é a saída da última Conv2d do seu encoder
+        )
+
+    def forward(self, x):
+        # Passa a imagem pelo encoder congelado
+        features = self.encoder(x)
+        # Esmaga espacialmente e passa pelo classificador novo
+        pooled = self.pool(features)
+        out = self.classifier(pooled)
+        return out
