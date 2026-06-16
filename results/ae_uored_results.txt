@@ -1,0 +1,42 @@
+
+==================================================
+INICIANDO EXPERIMENTO AUTOENCODER UORED (VIRTUAL GROUPS)
+==================================================
+Verificando/Iniciando pré-treinamento do Autoencoder (Source)...
+Pesos do Autoencoder encontrados: /home/vfrocha/newvibnetexperiments/weights/vibnet_ae_source_no_UORED.pth. Pulando pré-treino.
+
+========================================
+Fold: Testando no Group_A (Autoencoder)
+========================================
+   [Dados] Treino: 5760 imgs | Teste: 1440 imgs
+      Resultado AE Extractor: Bal Acc: 0.2319 | F1: 0.1288
+
+========================================
+Fold: Testando no Group_B (Autoencoder)
+========================================
+   [Dados] Treino: 6600 imgs | Teste: 600 imgs
+      Resultado AE Extractor: Bal Acc: 0.3588 | F1: 0.2804
+
+========================================
+Fold: Testando no Group_C (Autoencoder)
+========================================
+   [Dados] Treino: 6720 imgs | Teste: 480 imgs
+      Resultado AE Extractor: Bal Acc: 0.1100 | F1: 0.0568
+
+========================================
+Fold: Testando no Group_D (Autoencoder)
+========================================
+   [Dados] Treino: 6720 imgs | Teste: 480 imgs
+      Resultado AE Extractor: Bal Acc: 0.0000 | F1: 0.0000
+
+========================================
+Fold: Testando no Group_E (Autoencoder)
+========================================
+   [Dados] Treino: 6720 imgs | Teste: 480 imgs
+      Resultado AE Extractor: Bal Acc: 0.1675 | F1: 0.1652
+
+--- RESUMO FINAL UORED (AUTOENCODER) ---
+                      Bal Accuracy            Macro F1         
+                              mean       std      mean      std
+Strategy                                                       
+AE_Feature_Extraction     0.173625  0.134067  0.126249  0.10728

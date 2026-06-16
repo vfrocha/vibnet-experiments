@@ -1,0 +1,87 @@
+
+INICIANDO EXPERIMENTO AUTOENCODER CWRU UNIFICADO (MULTI-STRATEGY)
+Verificando/Iniciando pré-treinamento do Autoencoder (Source)...
+Pesos do Autoencoder encontrados: /home/vfrocha/newvibnetexperiments/weights/vibnet_ae_source_no_['CWRU_12k', 'CWRU_48k'].pth. Pulando pré-treino.
+
+==================================================
+AVALIANDO DATASET: CWRU_12k
+==================================================
+
+--- Fold: Testando em Load_0HP ---
+   -> Estratégia: AE_Scratch
+      Result: Bal Acc: 0.7696 | F1: 0.7589
+   -> Estratégia: AE_FineTuning
+      Result: Bal Acc: 0.6296 | F1: 0.6292
+   -> Estratégia: AE_Feature_Extraction
+      Result: Bal Acc: 0.5232 | F1: 0.4892
+
+--- Fold: Testando em Load_1HP ---
+   -> Estratégia: AE_Scratch
+      Result: Bal Acc: 0.8439 | F1: 0.8422
+   -> Estratégia: AE_FineTuning
+      Result: Bal Acc: 0.5825 | F1: 0.5687
+   -> Estratégia: AE_Feature_Extraction
+      Result: Bal Acc: 0.5316 | F1: 0.4862
+
+--- Fold: Testando em Load_2HP ---
+   -> Estratégia: AE_Scratch
+      Result: Bal Acc: 0.8432 | F1: 0.8430
+   -> Estratégia: AE_FineTuning
+      Result: Bal Acc: 0.6449 | F1: 0.6415
+   -> Estratégia: AE_Feature_Extraction
+      Result: Bal Acc: 0.5849 | F1: 0.5183
+
+--- Fold: Testando em Load_3HP ---
+   -> Estratégia: AE_Scratch
+      Result: Bal Acc: 0.8507 | F1: 0.8502
+   -> Estratégia: AE_FineTuning
+      Result: Bal Acc: 0.6529 | F1: 0.6513
+   -> Estratégia: AE_Feature_Extraction
+      Result: Bal Acc: 0.5661 | F1: 0.5186
+
+==================================================
+AVALIANDO DATASET: CWRU_48k
+==================================================
+
+--- Fold: Testando em Load_0HP ---
+   -> Estratégia: AE_Scratch
+      Result: Bal Acc: 0.5867 | F1: 0.4533
+   -> Estratégia: AE_FineTuning
+      Result: Bal Acc: 0.5433 | F1: 0.5253
+   -> Estratégia: AE_Feature_Extraction
+      Result: Bal Acc: 0.4067 | F1: 0.3520
+
+--- Fold: Testando em Load_1HP ---
+   -> Estratégia: AE_Scratch
+      Result: Bal Acc: 0.7104 | F1: 0.7154
+   -> Estratégia: AE_FineTuning
+      Result: Bal Acc: 0.4816 | F1: 0.4616
+   -> Estratégia: AE_Feature_Extraction
+      Result: Bal Acc: 0.5649 | F1: 0.5617
+
+--- Fold: Testando em Load_2HP ---
+   -> Estratégia: AE_Scratch
+      Result: Bal Acc: 0.6903 | F1: 0.6989
+   -> Estratégia: AE_FineTuning
+      Result: Bal Acc: 0.5444 | F1: 0.5455
+   -> Estratégia: AE_Feature_Extraction
+      Result: Bal Acc: 0.5736 | F1: 0.5723
+
+--- Fold: Testando em Load_3HP ---
+   -> Estratégia: AE_Scratch
+      Result: Bal Acc: 0.7194 | F1: 0.7220
+   -> Estratégia: AE_FineTuning
+      Result: Bal Acc: 0.6069 | F1: 0.5881
+   -> Estratégia: AE_Feature_Extraction
+      Result: Bal Acc: 0.5125 | F1: 0.4573
+
+--- RESUMO FINAL CWRU (AUTOENCODER) ---
+                               Bal Accuracy            Macro F1          
+                                       mean       std      mean       std
+Dataset  Strategy                                                        
+CWRU_12k AE_Feature_Extraction     0.551432  0.029022  0.503063  0.017814
+         AE_FineTuning             0.627476  0.031505  0.622671  0.037103
+         AE_Scratch                0.826859  0.038317  0.823549  0.043250
+CWRU_48k AE_Feature_Extraction     0.514429  0.076747  0.485843  0.103197
+         AE_FineTuning             0.544073  0.051187  0.530155  0.052645
+         AE_Scratch                0.676687  0.061239  0.647421  0.129763
