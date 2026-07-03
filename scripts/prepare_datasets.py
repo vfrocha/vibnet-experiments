@@ -84,6 +84,23 @@ if __name__ == "__main__":
     else:
         print("💾 Arquivos zip detectados localmente.")
 
+    uoemd_dir = os.path.join(RAW_DATA_DIR, "UOEMD_raw")
+    uoemd_zip = "UOEMD_temp.zip"
+    uoemd_id = "1c7HF04IUxiYFIrATQgBYTzMLUJ2iNzLK"
+    uoemd_url = f'https://drive.google.com/uc?id={uoemd_id}'
+
+    if not os.path.exists(uoemd_dir) or len(os.listdir(uoemd_dir)) == 0:
+        print("\nBaixando Dataset UOEMD do Google Drive...")
+        os.makedirs(uoemd_dir, exist_ok=True)
+        gdown.download(uoemd_url, uoemd_zip, quiet=False)
+        
+        print("Extraindo arquivos...")
+        with zipfile.ZipFile(uoemd_zip, 'r') as zip_ref:
+            zip_ref.extractall(uoemd_dir)
+            
+        os.remove(uoemd_zip)
+        print("Download do UOEMD concluído!")
+    
     # B: Processamento
     for ds_name in ["CWRU", "HUST", "PU", "UORED"]:
         print(f"\n=== Processando {ds_name} ===")
